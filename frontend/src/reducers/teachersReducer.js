@@ -2,7 +2,6 @@ const teachersReducer = (state={
   teachers: [],
   loading: false
   }, action) => {
-  
   switch(action.type) {
     case "LOADING_TEACHERS":
       return {
