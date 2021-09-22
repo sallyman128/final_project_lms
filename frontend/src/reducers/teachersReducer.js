@@ -21,3 +21,5 @@ const teachersReducer = (state={
       return state
   }
 }
+
+export default teachersReducer
