@@ -6,6 +6,7 @@ import NoRoute from './components/NoRoute.js'
 import NavBarContainer from './containers/NavBarContainer.js'
 import DashboardContainer from './containers/DashboardContainer.js'
 import CatalogContainer from './containers/CatalogContainer.js'
+import CourseShowContainer from './containers/CourseShowContainer.js'
 
 function App() {
   return (
@@ -16,11 +17,14 @@ function App() {
         <Route exact path='/'>
           <Home />
         </Route>
-        <Route exact path="/dashboard">
+        <Route path="/dashboard">
           <DashboardContainer />
         </Route>
-        <Route exact path='/catalog'>
-          <CatalogContainer />
+        <Route exact path= '/catalog'>
+          <CatalogContainer/>
+        </Route>
+        <Route path='/catalog/:id'>
+          <CourseShowContainer />
         </Route>
         <Route>
           <NoRoute/>
