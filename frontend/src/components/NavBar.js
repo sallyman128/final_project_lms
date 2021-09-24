@@ -8,7 +8,7 @@ const NavBar = () => {
         <li id='title'>MyLMS</li>
         <li><a>Home</a></li>
         <li><a>Dashboard</a></li>
-        <li><a>Courses</a></li>
+        <li><a>Catalog</a></li>
         <li><a>Logout</a></li>
       </ul>
     </div>
