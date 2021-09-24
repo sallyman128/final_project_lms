@@ -1,14 +1,14 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import './CourseCard.css'
 
 const CourseCard = (props) => {
   console.log(props);
   return (
-    <div id={props.courseInfo.id} className="course-card">
-      <p>course card #{props.courseInfo.id}</p>
-      <p>Course ID: {props.courseInfo.courseId}</p>
-      <p>Title: {props.courseInfo.title}</p>
-    </div>
+    <Link to={`/catalog/${props.courseInfo.id}`} className="card">
+      <p>{props.courseInfo.courseId}</p>
+      <p>{props.courseInfo.title}</p>
+    </Link>
   )
 }
 

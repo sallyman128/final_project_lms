@@ -14,7 +14,7 @@ class CatalogContainer extends Component {
     ]
 
     return (
-      dummyData.map(courseInfo => <CourseCard courseInfo={courseInfo} />)
+      dummyData.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
     )
   }
 
