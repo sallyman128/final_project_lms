@@ -1,25 +1,26 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import NavBar from './components/NavBar.js'
 import Home from './components/Home.js'
-import Dashboard from './components/Dashboard.js'
-import Catalog from './components/Catalog.js'
 import NoRoute from './components/NoRoute.js'
+
+import NavBarContainer from './containers/NavBarContainer.js'
+import DashboardContainer from './containers/DashboardContainer.js'
+import CatalogContainer from './containers/CatalogContainer.js'
 
 function App() {
   return (
     <Router>
-      <NavBar />
+      <NavBarContainer />
 
       <Switch>
         <Route exact path='/'>
           <Home />
         </Route>
         <Route exact path="/dashboard">
-          <Dashboard />
+          <DashboardContainer />
         </Route>
         <Route exact path='/catalog'>
-          <Catalog />
+          <CatalogContainer />
         </Route>
         <Route>
           <NoRoute/>
