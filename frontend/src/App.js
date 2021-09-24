@@ -1,9 +1,10 @@
 import React from 'react'
+import NavBarContainer from './containers/NavBarContainer'
 
 function App() {
   return (
-    <div>
-      <h1>Hello</h1>
+    <div className='App'>
+      <NavBarContainer />
     </div>
   );
 }

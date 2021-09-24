@@ -1,0 +1,26 @@
+#title {
+  background-color: #ABD2FA;
+  color: black;
+  font-size: larger;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+}
+
+li:hover {
+  background-color: #3D518C
+}
