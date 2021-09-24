@@ -18,8 +18,13 @@ li {
   color: white;
   text-align: center;
   padding: 16px;
+  text-decoration: underline;
 }
 
 li:hover {
   background-color: #3D518C
+}
+
+a {
+  color: white
 }

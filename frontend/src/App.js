@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './components/NavBar.js'
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './components/Home.js'
 import Dashboard from './components/Dashboard.js'
 import Catalog from './components/Catalog.js'
