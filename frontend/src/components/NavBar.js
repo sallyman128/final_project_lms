@@ -2,15 +2,16 @@ import React from "react"
 import {Link} from 'react-router-dom'
 import './NavBar.css'
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <div className="NavBar">
       <ul>
-        <li id='title'>MyLMS</li>
-        <Link to="/"><li >Home</li></Link>
-        <Link to="/dashboard"><li>Dashboard</li></Link>
-        <Link to="/catalog"><li>Catalog</li></Link>
-        <li>Logout</li>
+        <li id='appTitle'>MyLMS</li>
+        {props.links.map( ({url, name}) => {
+          return (
+            <Link to={url} key={url}><li>{name}</li></Link>
+          )
+        })}
       </ul>
     </div>
   )

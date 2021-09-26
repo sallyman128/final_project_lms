@@ -13,22 +13,29 @@ class NavBarContainer extends Component {
   }
 
   navBarLinks() {
-    let props = {}
+    let linksToShow = {};
     if (this.isLoggedIn()) {
-      props = ["Home", "Dashboard", "Catalog", "Logout"]
+      linksToShow = [
+        {name: "Home", url: "/"},
+        {name: "Catalog", url: "/catalog"},
+        {name: "Dashboard", url: "/dashboard"},
+      ]
     } else {
-      props = ['Home', 'Catalog', 'Login']
+      linksToShow = [
+        {name: "Home", url: '/'},
+        {name: "Catalog", url: '/catalog'},
+        {name: "Login", url: '/login'}
+      ]
     }
-    return props;
+    return linksToShow;
   }
 
   render() {
     return (
       <div>
-        <NavBar />
-        {console.log(this.isLoggedIn())}
-        {console.log(this.navBarLinks())}
-      </div>      
+        <NavBar links={this.navBarLinks()}/>
+        {console.log("Logged In? ", this.isLoggedIn())}
+      </div>
     )
   }
 }
