@@ -7,6 +7,7 @@ import NavBarContainer from './containers/NavBarContainer.js'
 import DashboardContainer from './containers/DashboardContainer.js'
 import CatalogContainer from './containers/CatalogContainer.js'
 import CourseShowContainer from './containers/CourseShowContainer.js'
+import LoginContainer from './containers/LoginContainer.js'
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route path='/catalog/:id'>
           <CourseShowContainer />
+        </Route>
+        <Route path='/login'>
+          <LoginContainer />
         </Route>
         <Route>
           <NoRoute/>
