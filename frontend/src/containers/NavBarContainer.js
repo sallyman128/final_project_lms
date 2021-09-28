@@ -6,7 +6,7 @@ class NavBarContainer extends Component {
   isLoggedIn() {
     const token = localStorage.getItem("jwt")
     let loggedIn = false
-    if (token !== "undefined") {
+    if (token !== null) {
       loggedIn = true;
     }
     return loggedIn
@@ -19,6 +19,7 @@ class NavBarContainer extends Component {
         {name: "Home", url: "/"},
         {name: "Catalog", url: "/catalog"},
         {name: "Dashboard", url: "/dashboard"},
+        {name: "Logout", url: "/logout"}
       ]
     } else {
       linksToShow = [
