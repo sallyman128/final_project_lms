@@ -1,16 +1,29 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+u1 = User.create(name: "Kakashi Hatake", email: "kakashi@sensei.com", password_digest: "password")
 
 c1 = Course.create(title: "Mathematics", description: "A course on numbers.")
 c2 = Course.create(title: "Science", description: "A course on planets and chemistry.")
 
-t1 = Teacher.create(prefix: "Mr.", first_name: "Jon", last_name: "Snow", email: "Jon.Snow@teacher.com")
-t2 = Teacher.create(prefix: "Ms.", first_name: "Cinder", last_name: "Ella", email: "Cinderella@teacher.com")
+a1 = Assignment.create(title: "Homework 1", description: "Do this homework", due_date: Faker::Date.between(from: '1995-12-08', to: '2021-12-31'))
+a2 = Assignment.create(title: "Homework 2", description: "Do this homework", due_date: Faker::Date.between(from: '1995-12-08', to: '2021-12-31'))
+a3 = Assignment.create(title: "Homework 1", description: "Do this homework", due_date: Faker::Date.between(from: '1995-12-08', to: '2021-12-31'))
+a4 = Assignment.create(title: "Homework 2", description: "Do this homework", due_date: Faker::Date.between(from: '1995-12-08', to: '2021-12-31'))
 
-c1.teachers << t1
-c2.teachers << t2
+s1 = Student.create(name: "Naruto Uzamaki", email: "naruto@gmail.com")
+s2 = Student.create(name: "Sakura Haruno", email: "sakura@gmail.com")
+s3 = Student.create(name: "Sasuke Uchiha", email: "sasuke@gmail.com")
+
+u1.courses << c1
+u1.courses << c2
+
+c1.students << s1
+c1.students << s2
+c1.students << s3
+c2.students << s1
+c2.students << s2
+
+c1.assignments << a1
+c1.assignments << a2
+c2.assignments << a3
+c2.assignments << a4
+
+
