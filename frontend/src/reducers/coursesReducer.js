@@ -4,6 +4,7 @@ const coursesReducer = (state={
   }, action) => {
   switch(action.type) {
     case "LOADING_COURSES":
+      console.log("loading courses")
       return {
         ...state,
         courses: [...state.courses],
@@ -11,6 +12,7 @@ const coursesReducer = (state={
       }
     
     case "GET_COURSES":
+      console.log("getting courses")
       return {
         ...state,
         courses: action.courses,

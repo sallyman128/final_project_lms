@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {connect} from 'react-redux'
 import Home from './components/Home.js'
 import NoRoute from './components/NoRoute.js'
-
 import NavBar from './components/NavBar.js'
+
 import DashboardContainer from './containers/DashboardContainer.js'
 import CatalogContainer from './containers/CatalogContainer.js'
 import CourseShowContainer from './containers/CourseShowContainer.js'
 import LoginContainer from './containers/LoginContainer.js'
+import { fetchCourses } from './actions/courseActions.js'
 
 class App extends Component {
 
@@ -27,6 +29,7 @@ class App extends Component {
   // }
 
   render() {
+    debugger;
     return (
       <Router>
         <NavBar />
@@ -52,8 +55,20 @@ class App extends Component {
           </Route>
         </Switch>
       </Router>
-      )
-    }
+    )
   }
+}
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCourses: () => dispatch(fetchCourses())
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    courses: state.courses
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps )(App);
