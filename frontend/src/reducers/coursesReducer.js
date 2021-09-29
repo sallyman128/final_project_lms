@@ -11,8 +11,8 @@ const coursesReducer = (state={
         loading: true
       }
     
-    case "GET_COURSES":
-      console.log("getting courses")
+    case "ADD_COURSES":
+      console.log("adding courses")
       return {
         ...state,
         courses: action.courses,
