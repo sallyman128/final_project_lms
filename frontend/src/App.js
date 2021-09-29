@@ -27,9 +27,13 @@ class App extends Component {
   //     isLoggedIn: false
   //   })
   // }
+  
+  componentDidMount() {
+    console.log("App succesfully mounted")
+    this.props.getCourses()
+  }
 
   render() {
-    debugger;
     return (
       <Router>
         <NavBar />

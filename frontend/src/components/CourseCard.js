@@ -3,10 +3,8 @@ import {Link} from 'react-router-dom'
 import './CourseCard.css'
 
 const CourseCard = (props) => {
-  console.log(props);
   return (
-    <Link to={`/catalog/${props.courseInfo.id}`} className="card">
-      <p>{props.courseInfo.courseId}</p>
+    <Link to={`/catalog/${props.courseInfo.id}`} className="courseCard">
       <p>{props.courseInfo.title}</p>
     </Link>
   )

@@ -3,20 +3,11 @@ import CourseCard from "../components/CourseCard";
 import {connect} from 'react-redux'
 
 class CatalogContainer extends Component {
+
   renderAllCourses() {
-    // rendering dummy data
-    // const dummyData = [
-    //   {id: 1, courseId: "MATH301", title: "Mathemetics"},
-    //   {id: 2, courseId: "ENG412", title: "English"},
-    //   {id: 3, courseId: "CHEM101", title: "Chemistry"},
-    //   {id: 4, courseId: "MATH301", title: "Mathemetics"},
-    //   {id: 5, courseId: "ENG412", title: "English"},
-    //   {id: 6, courseId: "CHEM101", title: "Chemistry"}
-    // ]
-    const courses = this.props.courses
-    debugger;
+    const allCourses = this.props.courses.courses
     return (
-      courses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
+      allCourses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
     )
   }
 
@@ -24,7 +15,7 @@ class CatalogContainer extends Component {
     return(
       <div>
         <h1>This is the CATALOG page!</h1>
-        {this.renderAllCourses()}
+        {this.props.courses.loading ? null : this.renderAllCourses()}
       </div>
     )
   }
