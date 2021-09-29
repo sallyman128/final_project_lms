@@ -15,6 +15,11 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def user_courses
+    user_courses = current_user.courses
+    render json: user_courses, include: [:assignments, :students, :users]
+  end
+
   private
 
   def user_params
