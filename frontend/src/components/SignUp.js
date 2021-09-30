@@ -5,9 +5,11 @@ class SignUp extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      email: "",
-      password: ""
+      user: {
+        name: "",
+        email: "",
+        password: ""
+      },
     }
   }
 
@@ -27,7 +29,7 @@ class SignUp extends Component {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        user: this.state
+        user: this.state.user
       }),
     })
     .then( resp => resp.json())
@@ -50,7 +52,7 @@ class SignUp extends Component {
               <input type="string" id="email" onChange={this.handleOnChange} />
             </p>
             <p>
-              Password
+              Password:
               <input type="password" id="password" onChange={this.handleOnChange} />
             </p>
             <button type="submit" value="Login">Submit</button>
