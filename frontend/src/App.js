@@ -5,6 +5,8 @@ import Home from './components/Home.js'
 import NoRoute from './components/NoRoute.js'
 import NavBar from './components/NavBar.js'
 
+import SignUp from './components/SignUp.js'
+
 import DashboardContainer from './containers/DashboardContainer.js'
 import CatalogContainer from './containers/CatalogContainer.js'
 import CourseShowContainer from './containers/CourseShowContainer.js'
@@ -53,6 +55,9 @@ class App extends Component {
           </Route>
           <Route path='/login'>
             <LoginContainer />
+          </Route>
+          <Route exact path='/signup'>
+            <SignUp />
           </Route>
           <Route>
             <NoRoute/>

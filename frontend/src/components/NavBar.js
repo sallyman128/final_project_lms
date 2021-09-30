@@ -26,7 +26,8 @@ class NavBar extends Component {
       linkstoDisplay = [
         {name: "Home", url: '/'},
         {name: "Catalog", url: '/catalog'},
-        {name: "Login", url: '/login'}
+        {name: "Login", url: '/login'},
+        {name: "Signup", url: '/signup'}
       ]
     }
     return linkstoDisplay
