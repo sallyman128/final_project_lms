@@ -29,7 +29,11 @@ class SignUp extends Component {
       body: JSON.stringify({
         user: this.state
       }),
-    })    
+    })
+    .then( resp => resp.json())
+    .then(console.log('trying to save to local storage'))
+    .then( data => localStorage.setItem("jwt", data.jwt) )
+    //setUser(data.user) save the user data to state
   }
 
   render() {
