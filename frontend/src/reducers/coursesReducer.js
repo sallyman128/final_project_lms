@@ -21,6 +21,14 @@ const coursesReducer = (state=initState, action) => {
         courses: action.courses,
         loading: false
       }
+
+    case "ADD_COURSE":
+      console.log("adding new course")
+      return {
+        ...state,
+        courses: [...state.courses, action.payload.course],
+        loading: false
+      }
     
     default:
       return state

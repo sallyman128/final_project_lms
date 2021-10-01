@@ -25,7 +25,10 @@ const addCourse = (courseInfo) => {
 
     fetch(`${baseAPI}/courses`, configOptions)
       .then(resp => resp.json())
-      .then(data => console.log(data))
+      .then(data => {
+        const payload= {course: data.course}
+        dispatch({type:"ADD_COURSE", payload})
+      })
   }
 }
 

@@ -21,6 +21,10 @@ class CourseForm extends Component {
     e.preventDefault();
     console.log("submitting course form");
     this.props.addCourse(this.state)
+    this.setState({
+      title: "",
+      description: ""
+    })
   }
 
   render() {
