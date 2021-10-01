@@ -28,6 +28,14 @@ const usersReducer = (state=initState, action) => {
         loading: false
       }
 
+    case "REMOVE_USER":
+      console.log("removing user")
+      return {
+        ...state,
+        user: initState.user,
+        loading: initState.loading
+      }
+
     default:
       return state
   }

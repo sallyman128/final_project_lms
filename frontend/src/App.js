@@ -6,6 +6,7 @@ import NoRoute from './components/NoRoute.js'
 import NavBar from './components/NavBar.js'
 
 import SignUp from './components/SignUp.js'
+import Logout from './components/Logout.js'
 
 import DashboardContainer from './containers/DashboardContainer.js'
 import CatalogContainer from './containers/CatalogContainer.js'
@@ -17,21 +18,6 @@ import isLoggedIn from './helpers/isLoggedIn.js'
 import CourseShow from './components/CourseShow.js'
 
 class App extends Component {
-
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     isLoggedIn: true,
-  //     user: {}
-  //   }
-  // }
-
-  // handleLogOut() {
-  //   localStorage.clear();
-  //   this.setState({
-  //     isLoggedIn: false
-  //   })
-  // }
   
   componentDidMount() {
     console.log("App succesfully mounted")
@@ -48,8 +34,9 @@ class App extends Component {
           <Route path="/dashboard" render={() => isLoggedIn() ? <DashboardContainer /> : <Redirect to="/" />} />
           <Route exact path="/catalog" render={() => <CatalogContainer />} />
           <Route path="/catalog/:id" render={() => <CourseShowContainer />} />
-          <Route path='/login' render={() => <LoginContainer />} />
+          <Route path='/login' render={() => isLoggedIn ? <Redirect to="/" /> : <LoginContainer />} />
           <Route exact path='/signup' render={() => isLoggedIn() ? <Redirect to="/" /> : <SignUp />} />
+          <Route exact path="/logout" render={() => isLoggedIn() ? <Logout /> : <Redirect to="/" />} />
           <Route render={() => <NoRoute />} />
         </Switch>
       </Router>
