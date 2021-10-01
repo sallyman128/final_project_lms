@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Home from './components/Home.js'
 import NoRoute from './components/NoRoute.js'
@@ -12,6 +12,9 @@ import CatalogContainer from './containers/CatalogContainer.js'
 import CourseShowContainer from './containers/CourseShowContainer.js'
 import LoginContainer from './containers/LoginContainer.js'
 import { fetchCourses } from './actions/courseActions.js'
+
+import isLoggedIn from './helpers/isLoggedIn.js'
+import CourseShow from './components/CourseShow.js'
 
 class App extends Component {
 
@@ -41,27 +44,13 @@ class App extends Component {
         <NavBar />
 
         <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route path="/dashboard">
-            <DashboardContainer />
-          </Route>
-          <Route exact path= '/catalog'>
-            <CatalogContainer/>
-          </Route>
-          <Route path='/catalog/:id'>
-            <CourseShowContainer />
-          </Route>
-          <Route path='/login'>
-            <LoginContainer />
-          </Route>
-          <Route exact path='/signup'>
-            <SignUp />
-          </Route>
-          <Route>
-            <NoRoute/>
-          </Route>
+          <Route exact path='/' render={() => <Home />} />
+          <Route path="/dashboard" render={() => <DashboardContainer />} />
+          <Route exact path="/catalog" render={() => <CatalogContainer />} />
+          <Route path="/catalog/:id" render={() => <CourseShowContainer />} />
+          <Route path='/login' render={() => <LoginContainer />} />
+          <Route exact path='/signup' render={() => isLoggedIn() ? <Redirect to="/" /> : <SignUp />} />
+          <Route render={() => <NoRoute />} />
         </Switch>
       </Router>
     )
