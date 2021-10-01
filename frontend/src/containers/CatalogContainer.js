@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 class CatalogContainer extends Component {
 
   renderAllCourses() {
-    const allCourses = this.props.courses.courses
+    const allCourses = this.props.courses
     return (
       allCourses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
     )
@@ -15,14 +15,17 @@ class CatalogContainer extends Component {
     return(
       <div>
         <h1>This is the CATALOG page!</h1>
-        {this.props.courses.loading ? null : this.renderAllCourses()}
+        {this.props.loading ? null : this.renderAllCourses()}
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => (
-  {courses: state.courses}
-)
+const mapStateToProps = (state) => {
+  return {
+    courses: state.coursesReducer.courses,
+    loading: state.coursesReducer.loading
+  }
+}
 
 export default connect(mapStateToProps)(CatalogContainer)
