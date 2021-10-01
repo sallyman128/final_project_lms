@@ -12,8 +12,12 @@ class DashboardContainer extends Component {
   render() {
     return (
       <div>
-        <h1>This is the Dashboard page</h1>
-        {this.renderUserCourses()}
+        <h1>Welcome {this.props.name}</h1>
+        <h3>Email: {this.props.email}</h3>
+        <label>Below are the courses you are assigned to:</label>
+        <div>
+          {this.renderUserCourses()}
+        </div>
       </div>
     )
   }

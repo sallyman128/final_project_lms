@@ -9,13 +9,13 @@ class NavBar extends Component {
     if (this.props.loggedIn) {
       return [
         {name: "Dashboard", url: "/"},
-        {name: "Catalog", url: "/catalog"},
+        {name: "Catalog", url: "/courses"},
         {name: "Logout", url: "/logout"}
       ]
     } else {
       return [
         {name: "Home", url: '/'},
-        {name: "Catalog", url: '/catalog'},
+        {name: "Catalog", url: '/courses'},
         {name: "Login", url: '/login'},
         {name: "Signup", url: '/signup'}
       ]
