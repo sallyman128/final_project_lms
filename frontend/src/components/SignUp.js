@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {userActions} from '../actions/userActions'
 
 class SignUp extends Component {
 
   constructor() {
     super();
     this.state = {
-      user: {
-        name: "",
-        email: "",
-        password: ""
-      },
+      name: "",
+      email: "",
+      password: ""
     }
   }
 
@@ -20,22 +20,9 @@ class SignUp extends Component {
   }
 
   handleOnSubmit = (e) => {
-    e.preventDefault();
-
-    fetch("http://localhost:9999/api/v1/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        user: this.state.user
-      }),
-    })
-    .then( resp => resp.json())
-    .then(console.log('trying to save to local storage'))
-    .then( data => localStorage.setItem("jwt", data.jwt) )
-    //setUser(data.user) save the user data to state
+    e.preventDefault()
+    console.log('submitting user')
+    this.props.addUser(this.state)
   }
 
   render() {
@@ -62,4 +49,10 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addUser: (userInfo) => dispatch(userActions.addUser(userInfo))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SignUp)

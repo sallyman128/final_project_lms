@@ -1,24 +1,19 @@
-const usersReducer = (state={user: {name: "", email: "", courses: []}, loading: false}, action) => {
+const usersReducer = (state={user: {name: "", email: "", courses: []}}, action) => {
   switch (action.type) {
-    case "LOGIN_REQUEST":
-      console.log("requesting to login user")
+    case "ADD_USER":
+      console.log("adding user")
       return {
         ...state,
-        loading: true
+        user: {
+          name: action.name,
+          email: action.email,
+          courses: action.courses
+        }
       }
 
-    // case "LOGGING_IN_USER":
-    //   console.log("attempting to log in user")
-    //   return {
-    //     ...state,
-    //     user: {
-    //       name: action.name,
-    //       email: action.email,
-    //       courses: action.courses
-    //     }
-    //   }
-    
     default:
       return state
   }
 }
+
+export default usersReducer
