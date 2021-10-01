@@ -8,8 +8,7 @@ class NavBar extends Component {
   linksToDisplay() {
     if (this.props.loggedIn) {
       return [
-        {name: "Profile", url: "/"},
-        {name: "Dashboard", url: "/dashboard"},
+        {name: "Dashboard", url: "/"},
         {name: "Catalog", url: "/catalog"},
         {name: "Logout", url: "/logout"}
       ]

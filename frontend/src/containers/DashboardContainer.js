@@ -1,17 +1,11 @@
 import React, {Component} from "react";
 import CourseCard from "../components/CourseCard";
+import { connect } from "react-redux";
 
 class DashboardContainer extends Component {
   renderUserCourses() {
-    // rendering dummy data
-    const dummyData = [
-      {id: 1, courseId: "MATH301", title: "Mathemetics"},
-      {id: 2, courseId: "ENG412", title: "English"},
-      {id: 3, courseId: "CHEM101", title: "Chemistry"}
-    ]
-
     return (
-      dummyData.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
+      this.props.courses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
     )
   }
 
@@ -25,4 +19,12 @@ class DashboardContainer extends Component {
   }
 }
 
-export default DashboardContainer;
+const mapStateToProps = (state) => {
+  return {
+    name: state.usersReducer.user.name,
+    email: state.usersReducer.user.email,
+    courses: state.usersReducer.user.courses
+  }
+}
+
+export default connect(mapStateToProps)(DashboardContainer);
