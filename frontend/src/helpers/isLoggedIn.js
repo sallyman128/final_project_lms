@@ -8,7 +8,8 @@
 // }
 
 const isLoggedIn = () => {
-
+  const token = localStorage.getItem("jwt")
+  return !!token ? true : false
 }
 
 export default isLoggedIn

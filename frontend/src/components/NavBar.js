@@ -1,21 +1,22 @@
 import React, {Component} from "react"
 import {Link} from 'react-router-dom'
 import './NavBar.css'
+import isLoggedIn from "../helpers/isLoggedIn"
 
 class NavBar extends Component {
 
-  isLoggedIn() {
-    const token = localStorage.getItem("jwt")
-    let loggedIn = false
-    if (token !== null) {
-      loggedIn = true;
-    }
-    return loggedIn
-  }
+  // isLoggedIn() {
+  //   const token = localStorage.getItem("jwt")
+  //   let loggedIn = false
+  //   if (token !== null) {
+  //     loggedIn = true;
+  //   }
+  //   return loggedIn
+  // }
 
   linksToDisplay() {
     let linkstoDisplay = []
-    if (this.isLoggedIn()) {
+    if (isLoggedIn()) {
       linkstoDisplay = [
         {name: "Profile", url: "/"},
         {name: "Dashboard", url: "/dashboard"},

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {userActions} from '../actions/userActions'
 
+
 class SignUp extends Component {
 
   constructor() {
