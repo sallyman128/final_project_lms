@@ -12,7 +12,7 @@ class SignUp extends Component {
         name: "",
         email: "",
         password: ""
-      }
+      },
     }
   }
 
@@ -30,7 +30,7 @@ class SignUp extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault()
     console.log('form submitting user')
-    this.props.addUser(this.state.user)
+    this.props.signup(this.state.user)
   }
 
   render() {
@@ -59,7 +59,7 @@ class SignUp extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addUser: (userInfo) => dispatch(userActions.addUser(userInfo))
+    signup: (userInfo) => dispatch(userActions.signup(userInfo))
   }
 }
 

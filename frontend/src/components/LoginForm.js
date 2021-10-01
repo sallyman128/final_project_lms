@@ -1,43 +1,58 @@
-import React, {Component} from "react";
-import { userActions } from "../actions/userActions";
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {userActions} from '../actions/userActions'
 
-class LoginForm extends Component {
+
+class SignUp extends Component {
+
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: ""
+      user: {
+        email: "",
+        password: ""
+      },
     }
   }
 
   handleOnChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
+    this.setState( (currentState) => {
+      return {
+        user: {
+          ...currentState.user,
+          [e.target.id]: e.target.value
+        }
+      }
     })
   }
 
   handleOnSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
-    userActions.login(this.state)
+    console.log('form submitting user')
+    this.props.signup(this.state.user)
   }
 
   render() {
     return (
-      <form onSubmit={this.handleOnSubmit} >
-        <label>
-          Email: 
-          <input type="string" id="email" onChange={this.handleOnChange} />
-        </label>
-        <label>
-          Password
-          <input type="password" id="password" onChange={this.handleOnChange} />
-        </label>
-        <button type="submit" value="Login">Submit</button>
-      </form>
+      <form onSubmit={this.handleOnSubmit}>
+        <p>
+            Email: 
+            <input type="string" id="email" onChange={this.handleOnChange} />
+          </p>
+          <p>
+            Password:
+            <input type="password" id="password" onChange={this.handleOnChange} />
+          </p>
+          <button type="submit" value="Login">Submit</button>
+      </form>    
     )
   }
 }
 
-export default LoginForm
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signup: (userInfo) => dispatch(userActions.signup(userInfo))
+  }
+}
 
+export default connect(null, mapDispatchToProps)(SignUp)

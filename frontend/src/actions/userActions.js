@@ -1,6 +1,6 @@
 const baseAPI = 'http://localhost:9999/api/v1'
 
-const addUser = (userInfo) => {
+const signup = (userInfo) => {
   return (dispatch) => {
     const configOptions = {
       method: "POST",
@@ -30,5 +30,6 @@ const addUser = (userInfo) => {
 }
 
 export const userActions = {
-  addUser
+  signup,
+
 }
