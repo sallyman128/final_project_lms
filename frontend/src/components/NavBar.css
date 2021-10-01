@@ -1,10 +1,10 @@
-#appTitle {
+/* .NavBar > #appTitle {
   background-color: #ABD2FA;
   color: black;
   font-weight: bold;
 }
 
-ul {
+.NavBar > ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ ul {
   background-color: black;
 }
 
-li {
+.NavBar > ul > li {
   float: left;
   display: block;
   color: white;
@@ -21,10 +21,10 @@ li {
   text-decoration: underline;
 }
 
-li:hover {
+.NavBar > a > li:hover {
   background-color: #3D518C
 }
 
-a {
+.NavBar > a {
   color: white
-}
+} */

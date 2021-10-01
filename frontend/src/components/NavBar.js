@@ -24,16 +24,16 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className="NavBar">
-      <ul>
-        <li id='appTitle'>MyLMS</li>
-        {this.linksToDisplay().map( ({url, name}) => {
-          return (
-            <Link to={url} key={name}><li>{name}</li></Link>
-          )
-        })}
-      </ul>
-    </div>
+      <div>
+        <ul className="NavBar">
+          <li id='appTitle'>MyLMS</li>
+          {this.linksToDisplay().map( ({url, name}) => {
+            return (
+              <Link to={url} key={name}><li>{name}</li></Link>
+            )
+          })}
+        </ul>
+      </div>
     )
   }
 }

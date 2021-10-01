@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import CourseCard from "../components/CourseCard";
 import {connect} from 'react-redux'
-import CourseForm from "../components/CourseForm";
+import { Link } from "react-router-dom";
 
 class CatalogContainer extends Component {
 
@@ -16,6 +16,7 @@ class CatalogContainer extends Component {
     return(
       <div>
         <h1>All courses</h1>
+        {this.props.loggedIn ? <Link to="/courses/new" ><p>Add new course</p></Link> : null}
         {this.props.loading ? null : this.renderAllCourses()}
       </div>
     )

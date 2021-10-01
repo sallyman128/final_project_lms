@@ -13,8 +13,7 @@ import CatalogContainer from './containers/CatalogContainer.js'
 import CourseShowContainer from './containers/CourseShowContainer.js'
 import LoginContainer from './containers/LoginContainer.js'
 import { courseActions } from './actions/courseActions.js'
-
-import CourseShow from './components/CourseShow.js'
+import CourseForm from './components/CourseForm.js'
 
 class App extends Component {
   
@@ -31,6 +30,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={() => this.props.loggedIn ? <DashboardContainer /> : <Home />} />
           <Route exact path="/courses" render={() => <CatalogContainer />} />
+          <Route path="/courses/new" render={() => this.props.loggedIn ? <CourseForm /> : <Redirect to="/courses" />} />
           <Route path="/courses/:id" render={() => <CourseShowContainer />} />
           <Route exact path='/login' render={() => this.props.loggedIn ? <Redirect to="/" /> : <LoginContainer />} />
           <Route exact path='/signup' render={() => this.props.loggedIn ? <Redirect to="/" /> : <SignUp />} />
