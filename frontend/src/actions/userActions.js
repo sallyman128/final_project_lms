@@ -61,7 +61,6 @@ const login = (userInfo) => {
 
 const logout = () => {
   return dispatch => {
-    console.log("logging out")
     localStorage.removeItem('jwt')
     dispatch({type: "REMOVE_USER"})
   }
