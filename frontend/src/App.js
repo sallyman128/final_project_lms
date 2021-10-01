@@ -12,9 +12,8 @@ import DashboardContainer from './containers/DashboardContainer.js'
 import CatalogContainer from './containers/CatalogContainer.js'
 import CourseShowContainer from './containers/CourseShowContainer.js'
 import LoginContainer from './containers/LoginContainer.js'
-import { fetchCourses } from './actions/courseActions.js'
+import { courseActions } from './actions/courseActions.js'
 
-// import isLoggedIn from './helpers/isLoggedIn.js'
 import CourseShow from './components/CourseShow.js'
 
 class App extends Component {
@@ -32,7 +31,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={() => this.props.loggedIn ? <DashboardContainer /> : <Home />} />
           <Route exact path="/courses" render={() => <CatalogContainer />} />
-          <Route path="/catalog/:id" render={() => <CourseShowContainer />} />
+          <Route path="/courses/:id" render={() => <CourseShowContainer />} />
           <Route exact path='/login' render={() => this.props.loggedIn ? <Redirect to="/" /> : <LoginContainer />} />
           <Route exact path='/signup' render={() => this.props.loggedIn ? <Redirect to="/" /> : <SignUp />} />
           <Route exact path="/logout" render={() => this.props.loggedIn ? <Logout /> : <Redirect to="/" />} />
@@ -45,7 +44,7 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCourses: () => dispatch(fetchCourses())
+    getCourses: () => dispatch(courseActions.fetchCourses())
   }
 }
 

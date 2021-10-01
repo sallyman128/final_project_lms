@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import CourseCard from "../components/CourseCard";
 import {connect} from 'react-redux'
+import CourseForm from "../components/CourseForm";
 
 class CatalogContainer extends Component {
 
@@ -14,7 +15,7 @@ class CatalogContainer extends Component {
   render() {
     return(
       <div>
-        <h1>This is the CATALOG page!</h1>
+        <h1>All courses</h1>
         {this.props.loading ? null : this.renderAllCourses()}
       </div>
     )
@@ -24,7 +25,8 @@ class CatalogContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     courses: state.coursesReducer.courses,
-    loading: state.coursesReducer.loading
+    loading: state.coursesReducer.loading,
+    loggedIn: state.usersReducer.loggedIn
   }
 }
 
