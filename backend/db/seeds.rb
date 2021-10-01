@@ -1,4 +1,4 @@
-u1 = User.create(name: "Kakashi Hatake", email: "kakashi@sensei.com", password_digest: "password")
+u1 = User.create(name: "Kakashi Hatake", email: "kakashi@sensei.com", password: "password")
 
 c1 = Course.create(title: "Mathematics", description: "A course on numbers.")
 c2 = Course.create(title: "Science", description: "A course on planets and chemistry.")

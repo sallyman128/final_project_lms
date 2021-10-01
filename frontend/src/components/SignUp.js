@@ -29,7 +29,7 @@ class SignUp extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault()
-    console.log('form submitting user')
+    console.log('submitting signup form')
     this.props.signup(this.state.user)
   }
 
