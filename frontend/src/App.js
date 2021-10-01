@@ -14,7 +14,7 @@ import CourseShowContainer from './containers/CourseShowContainer.js'
 import LoginContainer from './containers/LoginContainer.js'
 import { fetchCourses } from './actions/courseActions.js'
 
-import isLoggedIn from './helpers/isLoggedIn.js'
+// import isLoggedIn from './helpers/isLoggedIn.js'
 import CourseShow from './components/CourseShow.js'
 
 class App extends Component {
@@ -31,12 +31,12 @@ class App extends Component {
 
         <Switch>
           <Route exact path='/' render={() => <Home />} />
-          <Route path="/dashboard" render={() => isLoggedIn() ? <DashboardContainer /> : <Redirect to="/" />} />
+          <Route path="/dashboard" render={() => this.props.loggedIn ? <DashboardContainer /> : <Redirect to="/" />} />
           <Route exact path="/catalog" render={() => <CatalogContainer />} />
           <Route path="/catalog/:id" render={() => <CourseShowContainer />} />
-          <Route path='/login' render={() => isLoggedIn ? <Redirect to="/" /> : <LoginContainer />} />
-          <Route exact path='/signup' render={() => isLoggedIn() ? <Redirect to="/" /> : <SignUp />} />
-          <Route exact path="/logout" render={() => isLoggedIn() ? <Logout /> : <Redirect to="/" />} />
+          <Route path='/login' render={() => this.props.loggedIn ? <Redirect to="/" /> : <LoginContainer />} />
+          <Route exact path='/signup' render={() => this.props.loggedIn ? <Redirect to="/" /> : <SignUp />} />
+          <Route exact path="/logout" render={() => this.props.loggedIn ? <Logout /> : <Redirect to="/" />} />
           <Route render={() => <NoRoute />} />
         </Switch>
       </Router>
@@ -52,7 +52,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    courses: state.courses
+    courses: state.coursesReducer.courses,
+    loggedIn: state.usersReducer.loggedIn
   }
 }
 

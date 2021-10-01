@@ -1,37 +1,26 @@
 import React, {Component} from "react"
 import {Link} from 'react-router-dom'
 import './NavBar.css'
-import isLoggedIn from "../helpers/isLoggedIn"
+import { connect } from "react-redux"
 
 class NavBar extends Component {
 
-  // isLoggedIn() {
-  //   const token = localStorage.getItem("jwt")
-  //   let loggedIn = false
-  //   if (token !== null) {
-  //     loggedIn = true;
-  //   }
-  //   return loggedIn
-  // }
-
   linksToDisplay() {
-    let linkstoDisplay = []
-    if (isLoggedIn()) {
-      linkstoDisplay = [
+    if (this.props.loggedIn) {
+      return [
         {name: "Profile", url: "/"},
         {name: "Dashboard", url: "/dashboard"},
         {name: "Catalog", url: "/catalog"},
         {name: "Logout", url: "/logout"}
       ]
     } else {
-      linkstoDisplay = [
+      return [
         {name: "Home", url: '/'},
         {name: "Catalog", url: '/catalog'},
         {name: "Login", url: '/login'},
         {name: "Signup", url: '/signup'}
       ]
     }
-    return linkstoDisplay
   }
 
   render() {
@@ -41,7 +30,7 @@ class NavBar extends Component {
         <li id='appTitle'>MyLMS</li>
         {this.linksToDisplay().map( ({url, name}) => {
           return (
-            <Link to={url} key={url}><li>{name}</li></Link>
+            <Link to={url} key={name}><li>{name}</li></Link>
           )
         })}
       </ul>
@@ -50,19 +39,10 @@ class NavBar extends Component {
   }
 }
 
-// const NavBar = (props) => {
-//   return (
-//     <div className="NavBar">
-//       <ul>
-//         <li id='appTitle'>MyLMS</li>
-//         {props.links.map( ({url, name}) => {
-//           return (
-//             <Link to={url} key={url}><li>{name}</li></Link>
-//           )
-//         })}
-//       </ul>
-//     </div>
-//   )
-// }
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.usersReducer.loggedIn
+  }
+}
 
-export default NavBar
+export default connect(mapStateToProps)(NavBar)

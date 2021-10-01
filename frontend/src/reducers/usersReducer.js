@@ -4,6 +4,7 @@ const initState = {
     email: "",
     courses: []
   },
+  loggedIn: false,
   loading: false
 }
 
@@ -25,6 +26,7 @@ const usersReducer = (state=initState, action) => {
           email: action.payload.user.email,
           courses: action.payload.courses
         },
+        loggedIn: true,
         loading: false
       }
 
@@ -32,8 +34,7 @@ const usersReducer = (state=initState, action) => {
       console.log("removing user")
       return {
         ...state,
-        user: initState.user,
-        loading: initState.loading
+        ...initState
       }
 
     default:
