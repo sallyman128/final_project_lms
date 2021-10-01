@@ -7,22 +7,29 @@ class SignUp extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      email: "",
-      password: ""
+      user: {
+        name: "",
+        email: "",
+        password: ""
+      }
     }
   }
 
   handleOnChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
+    this.setState( (currentState) => {
+      return {
+        user: {
+          ...currentState.user,
+          [e.target.id]: e.target.value
+        }
+      }
     })
   }
 
   handleOnSubmit = (e) => {
     e.preventDefault()
-    console.log('submitting user')
-    this.props.addUser(this.state)
+    console.log('form submitting user')
+    this.props.addUser(this.state.user)
   }
 
   render() {

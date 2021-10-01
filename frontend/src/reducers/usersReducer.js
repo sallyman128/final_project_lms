@@ -5,9 +5,9 @@ const usersReducer = (state={user: {name: "", email: "", courses: []}}, action) 
       return {
         ...state,
         user: {
-          name: action.name,
-          email: action.email,
-          courses: action.courses
+          name: action.payload.user.name,
+          email: action.payload.user.email,
+          courses: action.payload.courses
         }
       }
 

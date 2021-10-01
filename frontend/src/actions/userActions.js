@@ -21,15 +21,12 @@ const addUser = (userInfo) => {
           // dont login user
           console.log(data.error)
         } else {
+          const payload = {user: data.user, courses: data.user_courses}
           localStorage.setItem("jwt", data.jwt);
-          dispatch({type: "ADD_USER", payload: data.user})
+          dispatch({type: "ADD_USER", payload})
         }
       })
   }
-}
-
-const validateUser = () => {
-  
 }
 
 export const userActions = {
