@@ -1,7 +1,10 @@
-const coursesReducer = (state={
+const initState = {
   courses: [],
   loading: false
-  }, action) => {
+}
+
+const coursesReducer = (state=initState, action) => {
+
   switch(action.type) {
     case "LOADING_COURSES":
       console.log("loading courses")

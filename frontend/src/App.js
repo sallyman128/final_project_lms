@@ -45,7 +45,7 @@ class App extends Component {
 
         <Switch>
           <Route exact path='/' render={() => <Home />} />
-          <Route path="/dashboard" render={() => <DashboardContainer />} />
+          <Route path="/dashboard" render={() => isLoggedIn() ? <DashboardContainer /> : <Redirect to="/" />} />
           <Route exact path="/catalog" render={() => <CatalogContainer />} />
           <Route path="/catalog/:id" render={() => <CourseShowContainer />} />
           <Route path='/login' render={() => <LoginContainer />} />

@@ -1,4 +1,13 @@
-const usersReducer = (state={user: {name: "", email: "", courses: []}, loading: false}, action) => {
+const initState = {
+  user: {
+    name: "",
+    email: "",
+    courses: []
+  },
+  loading: false
+}
+
+const usersReducer = (state=initState, action) => {
   switch (action.type) {
     case "LOADING_REQUEST":
       console.log("loading user request")
