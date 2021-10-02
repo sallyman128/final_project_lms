@@ -1,5 +1,5 @@
 class Api::V1::CoursesController < ApplicationController
-  skip_before_action :authorized
+  skip_before_action :authorized, only: [:index]
 
   def index
     courses = Course.all.map{ |course| CourseSerializer.new(course)}
@@ -18,10 +18,15 @@ class Api::V1::CoursesController < ApplicationController
     end
   end
 
+  def destroy
+    course = Course.find_by(id: course_params.id)
+    course.destroy
+  end
+
   private
 
   def course_params
-    params.require(:course).permit(:title, :description)
+    params.require(:course).permit(:title, :description, :id)
   end
 
 end

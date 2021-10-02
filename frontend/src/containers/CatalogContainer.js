@@ -8,8 +8,12 @@ class CatalogContainer extends Component {
   renderAllCourses() {
     const allCourses = this.props.courses
     return (
-      allCourses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
+      allCourses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} handleDelete={this.handleDelete} />)
     )
+  }
+
+  handleDelete = () => {
+
   }
 
   render() {
@@ -31,4 +35,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(CatalogContainer)
+const mapDisaptchToProps = () => {
+  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogContainer)

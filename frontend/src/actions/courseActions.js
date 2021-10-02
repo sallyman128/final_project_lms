@@ -32,7 +32,7 @@ const addCourse = (courseInfo) => {
   }
 }
 
-const deleteCourse = (course) => {
+const deleteCourse = (courseInfo) => {
   return (dispatch) => {
     const configOptions = {
       method: "DELETE",
@@ -42,15 +42,15 @@ const deleteCourse = (course) => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        course: course
+        course: courseInfo
       }),
     }
 
     fetch(`${baseAPI}/courses`, configOptions)
       .then(resp => resp.json())
       .then(() => {
-        dispatch({type: "DELETE_COURSE", payload: course})
-        dispatch({type: "DELETE_USER_COURSE", payload: course})
+        dispatch({type: "DELETE_COURSE", payload: courseInfo})
+        // dispatch({type: "DELETE_USER_COURSE", payload: courseInfo})
       })
   }
 }

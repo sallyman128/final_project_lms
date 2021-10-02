@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
       post '/login', to: 'auth#create'
 
-      resources :courses, only: [:index, :create]
+      resources :courses, only: [:index, :create, :destroy]
 
     end
   end
