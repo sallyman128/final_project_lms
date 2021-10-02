@@ -3,7 +3,9 @@ class Api::V1::CoursesController < ApplicationController
 
   def index
     courses = Course.all.map{ |course| CourseSerializer.new(course)}
-    render json: {courses: courses}
+    render json: {
+      courses: courses
+    }
   end
 
   def create

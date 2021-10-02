@@ -32,7 +32,31 @@ const addCourse = (courseInfo) => {
   }
 }
 
+const deleteCourse = (course) => {
+  return (dispatch) => {
+    const configOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        course: course
+      }),
+    }
+
+    fetch(`${baseAPI}/courses`, configOptions)
+      .then(resp => resp.json())
+      .then(() => {
+        dispatch({type: "DELETE_COURSE", payload: course})
+        dispatch({type: "DELETE_USER_COURSE", payload: course})
+      })
+  }
+}
+
 export const courseActions = {
   fetchCourses,
-  addCourse
+  addCourse,
+  deleteCourse
 }
