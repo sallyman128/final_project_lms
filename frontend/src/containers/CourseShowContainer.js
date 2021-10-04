@@ -1,8 +1,14 @@
 import React, {Component} from "react";
 import CourseShow from "../components/CourseShow";
 import { connect } from "react-redux";
+import { Redirect, useHistory } from "react-router";
+import { courseActions } from "../actions/courseActions";
 
 class CourseShowContainer extends Component {
+
+  constructor() {
+    super();
+  }
 
   findThisCourse = () => {
     return (
@@ -10,15 +16,16 @@ class CourseShowContainer extends Component {
     )
   }
 
-  handleDelete = (e) => {
-    
+  handleDelete = (course) => {
+    console.log('pressed delete button');
+    this.props.deleteCourse(course)
   }
 
   render() {
     const thisCourse = this.findThisCourse()
     return (
       <div>
-        {thisCourse ? <CourseShow course={thisCourse} handleDelete={this.handleDelete}/> : null}
+        {!!thisCourse ? <CourseShow course={thisCourse} handleDelete={this.handleDelete}/> : <Redirect to='/courses' />}
       </div>
     )
   }
@@ -30,4 +37,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(CourseShowContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteCourse: (course) => dispatch(courseActions.deleteCourse(course))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseShowContainer)

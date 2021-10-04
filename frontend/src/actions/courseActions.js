@@ -49,7 +49,7 @@ const deleteCourse = (courseInfo) => {
     fetch(`${baseAPI}/courses`, configOptions)
       .then(resp => resp.json())
       .then(() => {
-        dispatch({type: "DELETE_COURSE", payload: courseInfo})
+        dispatch({type: "DELETE_COURSE", payload: {course: courseInfo}})
         // dispatch({type: "DELETE_USER_COURSE", payload: courseInfo})
       })
   }
