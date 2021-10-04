@@ -31,7 +31,7 @@ class App extends Component {
           <Route exact path='/' render={() => this.props.loggedIn ? <DashboardContainer /> : <Home />} />
           <Route exact path="/courses" render={() => <CatalogContainer />} />
           <Route path="/courses/new" render={() => this.props.loggedIn ? <CourseForm /> : <Redirect to="/courses" />} />
-          <Route path="/courses/:id" render={() => <CourseShowContainer />} />
+          <Route path="/courses/:id" render={({match}) => <CourseShowContainer match={match} />} />
           <Route exact path='/login' render={() => this.props.loggedIn ? <Redirect to="/" /> : <LoginContainer />} />
           <Route exact path='/signup' render={() => this.props.loggedIn ? <Redirect to="/" /> : <SignUp />} />
           <Route exact path="/logout" render={() => this.props.loggedIn ? <Logout /> : <Redirect to="/" />} />

@@ -1,15 +1,33 @@
-import React from "react";
+import React, {Component} from "react";
 import CourseShow from "../components/CourseShow";
-import {useParams} from 'react-router-dom'
+import { connect } from "react-redux";
 
-const CourseShowContainer = () => {
-  const params = useParams()
+class CourseShowContainer extends Component {
 
-  return (
-    <div>
-      <CourseShow />
-    </div>
-  )
+  findThisCourse = () => {
+    return (
+      this.props.courses.find( course => course.id === parseInt(this.props.match.params.id))
+    )
+  }
+
+  handleDelete = (e) => {
+    
+  }
+
+  render() {
+    const thisCourse = this.findThisCourse()
+    return (
+      <div>
+        {thisCourse ? <CourseShow course={thisCourse} handleDelete={this.handleDelete}/> : null}
+      </div>
+    )
+  }
 }
 
-export default CourseShowContainer
+const mapStateToProps = (state) => {
+  return {
+    courses: state.coursesReducer.courses
+  }
+}
+
+export default connect(mapStateToProps)(CourseShowContainer)

@@ -4,24 +4,31 @@ import {courseActions} from '../actions/courseActions'
 
 class CourseShow extends Component {
 
-  handleOnClick = () => {
+  // handleOnClick = () => {
 
-  }
+  // }
 
   render() {
     return (
       <div>
-        This is the course show page
-        <button onClick={this.handleOnClick}>Delete</button>
+        <h1>
+          Title: {this.props.course.title}
+        </h1>
+        <h2>
+          Description: {this.props.course.description}
+        </h2>
+        <h3>Students</h3>
+        <ol>
+          {this.props.course.students.map( student => <li key={student.id}>{student.name}</li>)}
+        </ol>
+        <h3>Assignments</h3>
+        <ol>
+          {this.props.course.assignments.map( assignment => <li key={assignment.id}>{assignment.title}</li>)}
+        </ol>
+        <button onClick={this.props.handleDelete(this.props.course.id)}>Delete</button>
       </div>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    deleteCourse: (course) => dispatch(courseActions.deleteCourse(course))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(CourseShow);
+export default CourseShow;

@@ -2,19 +2,20 @@ import React, {Component} from "react";
 import CourseCard from "../components/CourseCard";
 import {connect} from 'react-redux'
 import { Link } from "react-router-dom";
+import { courseActions } from "../actions/courseActions";
 
 class CatalogContainer extends Component {
 
   renderAllCourses() {
     const allCourses = this.props.courses
     return (
-      allCourses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} handleDelete={this.handleDelete} />)
+      allCourses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
     )
   }
 
-  handleDelete = () => {
+  // handleDelete = () => {
 
-  }
+  // }
 
   render() {
     return(
@@ -35,8 +36,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDisaptchToProps = () => {
-  
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
 
-export default connect(mapStateToProps, mapDispatchToProps)(CatalogContainer)
+//   }
+// }
+
+export default connect(mapStateToProps, null)(CatalogContainer)
