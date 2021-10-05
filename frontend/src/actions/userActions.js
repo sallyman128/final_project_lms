@@ -20,6 +20,7 @@ const signup = (userInfo) => {
         if(data.error) {
           // dont login user
           console.log(data.error)
+          console.log('user email already has an account')
         } else {
           const payload = {user: data.user, courses: data.user_courses}
           localStorage.setItem("jwt", data.jwt);
