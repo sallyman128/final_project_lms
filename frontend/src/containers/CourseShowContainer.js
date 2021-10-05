@@ -4,6 +4,7 @@ import CourseShowPrivate from "../components/CourseShowPrivate";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { courseActions } from "../actions/courseActions";
+import { assignmentActions } from "../actions/assignmentActions";
 
 class CourseShowContainer extends Component {
 
@@ -104,7 +105,7 @@ class CourseShowContainer extends Component {
 
       if (this.validateAssignmentState()) {
         console.log('no errors in state')
-        console.log(this.state)
+        this.props.addAssignment(this.state.assignment)
         this.resetNewAssignmentFields()
       }
     }
@@ -204,7 +205,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteCourse: (course) => dispatch(courseActions.deleteCourse(course))
+    deleteCourse: (course) => dispatch(courseActions.deleteCourse(course)),
+    addAssignment: (assignment) => dispatch(assignmentActions.postNewAssignment(assignment))
   }
 }
 
