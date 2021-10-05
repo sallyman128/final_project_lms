@@ -17,7 +17,6 @@ const signup = (userInfo) => {
     fetch(`${baseAPI}/users`, configOptions)
       .then( resp => resp.json())
       .then(data => {
-        console.log(data)
         if(data.error) {
           // dont login user
           console.log(data.error)
