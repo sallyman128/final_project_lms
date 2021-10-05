@@ -37,6 +37,10 @@ class CourseShowContainer extends Component {
     return enrolled
   }
 
+  // handleAddAssignments = () => {
+
+  // }
+
   render() {
     const thisCourse = this.findThisCourse()
     if (this.props.loggedIn) {
