@@ -1,4 +1,5 @@
 import React from "react";
+import StudentsTable from "./StudentsTable";
 
 const CourseShowPrivate = ({course, handleDelete, notEnrolledStudents, enrolledStudents}) => {
   return (
@@ -13,9 +14,7 @@ const CourseShowPrivate = ({course, handleDelete, notEnrolledStudents, enrolledS
         {notEnrolledStudents.map( student => <option key={student.id} value={student.id}>{student.name}</option>)}
       </select>
       <button>Add</button>
-      <ol>
-        {enrolledStudents.map( student => <li key={student.id}>{student.name}</li>)}
-      </ol>
+      <StudentsTable students={enrolledStudents}/>
 
       <h3>Assignments <button>Add</button></h3>
       <ol>
