@@ -14,11 +14,13 @@ import CourseShowContainer from './containers/CourseShowContainer.js'
 import LoginContainer from './containers/LoginContainer.js'
 import { courseActions } from './actions/courseActions.js'
 import CourseForm from './components/CourseForm.js'
+import { userActions } from './actions/userActions.js'
 
 class App extends Component {
   
   componentDidMount() {
     console.log("App succesfully mounted")
+    this.props.logout()
     this.props.getCourses()
   }
 
@@ -44,7 +46,8 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCourses: () => dispatch(courseActions.fetchCourses())
+    getCourses: () => dispatch(courseActions.fetchCourses()),
+    logout: () => dispatch(userActions.logout())
   }
 }
 
