@@ -14,7 +14,14 @@ const CourseShow = ({course, handleDelete}) => {
 
       <h3>Assignments</h3>
       <ol>
-        {course.assignments.map( assignment => <li key={assignment.id}>{assignment.title}</li>)}
+        {course.assignments.map( assignment => {
+          return (
+            <div>
+              <li key={assignment.id}>{assignment.title}</li>
+              <i key={assignment.id}>{assignment.description}</i>
+            </div>
+          )
+        })}
       </ol>
 
       <button onClick={() => handleDelete(course)}>Delete</button>
