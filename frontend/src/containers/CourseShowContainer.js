@@ -12,15 +12,16 @@ class CourseShowContainer extends Component {
     this.state = {
       assignment: {
         title: "",
-        description: ""
-      }
+        description: "",
+        course_id: ""
+      },
+      newAssignmentErrors: []
     }
   }
 
   findThisCourse = () => {
-    return (
-      this.props.courses.find( course => course.id === parseInt(this.props.match.params.id))
-    )
+    const thisCourse = this.props.courses.find( course => course.id === parseInt(this.props.match.params.id))
+    return thisCourse
   }
 
   handleDelete = (course) => {
@@ -49,6 +50,9 @@ class CourseShowContainer extends Component {
     return enrolled
   }
 
+  /***************** DOM manipulation for new assignment fields *************************/
+
+  // first time user clicks to add assignment, fields will appear
   handleShowAssignmentFields = () => {
     const div = document.getElementById('add-assignment')
     const assignmentForm = `
@@ -68,12 +72,14 @@ class CourseShowContainer extends Component {
     document.addEventListener('click', this.cancelAddingAssigment)
   }
 
+  // dynamically update state with the inputted assignment details
   updateStateAssignment = (e) => {
     if(e.target.id === 'newAssignmentTitle') {
       this.setState(prevState => {
         return {
+          ...prevState,
           assignment: {
-            ...prevState.assigment,
+            ...prevState.assignment,
             title: e.target.value
           }
         }
@@ -81,6 +87,7 @@ class CourseShowContainer extends Component {
     } else if (e.target.id === 'newAssignmentDescription') {
       this.setState(prevState => {
         return {
+          ...prevState,
           assignment: {
             ...prevState.assignment,
             description: e.target.value
@@ -90,12 +97,47 @@ class CourseShowContainer extends Component {
     }
   }
 
+  // submit the assignment details or return some errors
   submitAssignment = (e) => {
     if (e.target.id === 'submitAssignment') {
+      this.setState( prevState => {
+        return {
+          assignment: {
+            ...prevState.assignment,
+            course_id: this.findThisCourse().id
+          }
+        }
+      })
+
+      if (this.validateAssignmentState()) {
+        console.log('no errors in state')
+      }
       console.log(this.state)
     }
   }
 
+  validateAssignmentState = () => {
+    const assignment = this.state.assignment
+    let errors = []
+    let valid = true
+
+    if(assignment.title === "") {
+      errors.push("Please enter a title.")
+      valid = false
+    }
+
+    if(assignment.description === "") {
+      errors.push("Please enter a description.")
+      valid = false
+    }
+
+    this.setState({
+      newAssignmentErrors: errors
+    })
+    return valid
+  }
+
+  // cancel the adding assignment process and rerender original html
   cancelAddingAssigment = (e) => {
     if (e.target.id === "cancelSubmitAssignment") {
       document.removeEventListener('click', this.cancelAddingAssigment)
@@ -111,11 +153,14 @@ class CourseShowContainer extends Component {
     }
   }
 
+  // original event handler that was passed with the original props
   showNewAssignmentFields = (e) => {
     if (e.target.id === "showAssignmentFieldsButton") {
       this.handleShowAssignmentFields()
     }
   }
+
+  /********************************************************************************************/
 
   render() {
     const thisCourse = this.findThisCourse()
@@ -129,6 +174,7 @@ class CourseShowContainer extends Component {
             enrolledStudents={this.enrolledStudents()}
             handleShowAssignmentFields={this.handleShowAssignmentFields}
             isUserAssignedToCourse={this.isUserAssignedToCourse()}
+            newAssignmentErrors = {this.state.newAssignmentErrors}
             />
             : <Redirect to='/courses' />}
       </div>
