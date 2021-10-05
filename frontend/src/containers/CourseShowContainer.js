@@ -105,7 +105,7 @@ class CourseShowContainer extends Component {
       if (this.validateAssignmentState()) {
         console.log('no errors in state')
         console.log(this.state)
-        this.removeNewAssignmentFields()
+        this.resetNewAssignmentFields()
       }
     }
   }
@@ -137,11 +137,11 @@ class CourseShowContainer extends Component {
       this.setState({
         newAssignmentErrors: [],
       })
-      this.removeNewAssignmentFields()
+      this.resetNewAssignmentFields()
     }
   }
 
-  removeNewAssignmentFields = () => {
+  resetNewAssignmentFields = () => {
     document.removeEventListener('click', this.cancelNewAssigment)
     document.removeEventListener('click', this.submitAssignment)
     document.removeEventListener('keyUp', this.updateStateAssignment)
