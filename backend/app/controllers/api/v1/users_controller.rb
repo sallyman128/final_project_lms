@@ -6,11 +6,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    user = User.create(user_params)
     if @user.valid?
       session[:user_id] = @user.id
-      @token = encode_token(user_id: @user.id)
-      render json: {user: UserSerializer.new(@user), jwt: @token, user_courses: @user.courses }, status: :created
+      token = encode_token(user_id: @user.id)
+      courses = user.courses.map{ |course| CourseSerializer.new(course) }
+      students = Student.all.map{ |student| StudentSerializer.new(student) }
+      render json: {user: UserSerializer.new(user), jwt: token, user_courses: courses, students:students }, status: :created
     else
       render json: { error: 'failed to create user', params: params }, status: :unprocessable_entity
     end

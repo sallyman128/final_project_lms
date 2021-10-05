@@ -18,13 +18,14 @@ const signup = (userInfo) => {
       .then( resp => resp.json())
       .then(data => {
         if(data.error) {
-          // dont login user
           console.log(data.error)
           console.log('user email already has an account')
         } else {
-          const payload = {user: data.user, courses: data.user_courses}
+          const userPayload = {user: data.user, courses: data.user_courses}
+          const studentsPayload = {students: data.students}
           localStorage.setItem("jwt", data.jwt);
-          dispatch({type: "ADD_USER", payload})
+          dispatch({type: "ADD_USER", userPayload})
+          dispatch({type: "ADD_STUDENTS", studentsPayload})
         }
       })
   }
@@ -51,9 +52,11 @@ const login = (userInfo) => {
         if (data.error) {
           console.log(data.error)
         } else {
-          const payload = {user: data.user, courses: data.user_courses}
+          const userPayload = {user: data.user, courses: data.user_courses}
+          const studentsPayload = {students: data.students}
           localStorage.setItem('jwt', data.jwt)
-          dispatch({type: "ADD_USER", payload})
+          dispatch({type: "ADD_USER", userPayload})
+          dispatch({type: "ADD_STUDENTS", studentsPayload})
         }
       })
   }

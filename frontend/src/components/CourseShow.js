@@ -7,12 +7,13 @@ const CourseShow = ({course, handleDelete}) => {
 
       <h2>Description: {course.description}</h2>
 
-      <h3>Students</h3>
+      {/* Show a selection list of students to add to a course */}
+      <h3>Students <select /></h3>
       <ol>
         {course.students.map( student => <li key={student.id}>{student.name}</li>)}
       </ol>
 
-      <h3>Assignments</h3>
+      <h3>Assignments <button>Add</button></h3>
       <ol>
         {course.assignments.map( assignment => {
           return (
