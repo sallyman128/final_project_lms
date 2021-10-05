@@ -30,13 +30,6 @@ class CourseShowContainer extends Component {
     // this.render(<Redirect to='/' />)
   }
 
-  // notEnrolledStudents = () => {
-  //   const thisCourseId = this.findThisCourse().id
-  //   const allStudents = this.props.students
-  //   const notEnrolled = allStudents.filter(student => !student.course_ids.includes(thisCourseId))
-  //   return notEnrolled
-  // }
-
   isUserAssignedToCourse = () => {
     const thisCourseId = this.findThisCourse().id
     const userCoursesIds = this.props.userCourses.map( course => course.id )
@@ -61,15 +54,15 @@ class CourseShowContainer extends Component {
       <label>Description: </label>
       <input id='newAssignmentDescription' value='' />
       <p>
-        <button id="submitAssignment">Add Assignment</button>
-        <button id="cancelSubmitAssignment">Cancel</button>
+        <button id="submitAssignment">Submit New Assignment</button>
+        <button id="cancelNewAssignment">Cancel</button>
       </p>
     `
     div.innerHTML = assignmentForm
 
     document.addEventListener('keyup', this.updateStateAssignment)
     document.addEventListener('click', this.submitAssignment)
-    document.addEventListener('click', this.cancelAddingAssigment)
+    document.addEventListener('click', this.cancelNewAssignment)
   }
 
   // dynamically update state with the inputted assignment details
@@ -111,8 +104,9 @@ class CourseShowContainer extends Component {
 
       if (this.validateAssignmentState()) {
         console.log('no errors in state')
+        console.log(this.state)
+        this.removeNewAssignmentFields()
       }
-      console.log(this.state)
     }
   }
 
@@ -138,19 +132,26 @@ class CourseShowContainer extends Component {
   }
 
   // cancel the adding assignment process and rerender original html
-  cancelAddingAssigment = (e) => {
-    if (e.target.id === "cancelSubmitAssignment") {
-      document.removeEventListener('click', this.cancelAddingAssigment)
-      document.removeEventListener('click', this.submitAssignment)
-      document.removeEventListener('keyUp', this.updateStateAssignment)
-
-      const assignmentDiv = document.getElementById("add-assignment")
-      const originalHTML = `
-        <button id="showAssignmentFieldsButton">Add Assignment</button>
-      `
-      assignmentDiv.innerHTML = originalHTML
-      document.addEventListener('click', this.showNewAssignmentFields)
+  cancelNewAssignment = (e) => {
+    if (e.target.id === "cancelNewAssignment") {
+      this.setState({
+        newAssignmentErrors: [],
+      })
+      this.removeNewAssignmentFields()
     }
+  }
+
+  removeNewAssignmentFields = () => {
+    document.removeEventListener('click', this.cancelNewAssigment)
+    document.removeEventListener('click', this.submitAssignment)
+    document.removeEventListener('keyUp', this.updateStateAssignment)
+
+    const assignmentDiv = document.getElementById("add-assignment")
+    const originalHTML = `
+      <button id="showAssignmentFieldsButton">Add Assignment</button>
+    `
+    assignmentDiv.innerHTML = originalHTML
+    document.addEventListener('click', this.showNewAssignmentFields)
   }
 
   // original event handler that was passed with the original props

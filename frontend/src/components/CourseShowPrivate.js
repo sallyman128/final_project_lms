@@ -14,7 +14,7 @@ const CourseShowPrivate = ({course, handleDelete, enrolledStudents, handleShowAs
       <h3>Assignments</h3>
 
       <ul id='new-assignment-errors'>
-          {newAssignmentErrors.map(error => <li>{error}</li>)}
+          {newAssignmentErrors.map(error => <li key={error}>{error}</li>)}
       </ul>
       <div id="add-assignment">
         {isUserAssignedToCourse ? <button id= "showAssignmentFieldsButton" onClick={() => handleShowAssignmentFields()}>Add Assignment</button> : null }
@@ -30,7 +30,8 @@ const CourseShowPrivate = ({course, handleDelete, enrolledStudents, handleShowAs
         })}
       </ol>
 
-      <button onClick={() => handleDelete(course)}>Delete</button>
+      <button onClick={() => handleDelete(course)}>Delete Course</button>
+      {/* <button>Edit Course</button> */}
     </div>
   )
 }
