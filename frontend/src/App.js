@@ -15,6 +15,7 @@ import LoginContainer from './containers/LoginContainer.js'
 import { courseActions } from './actions/courseActions.js'
 import CourseForm from './components/CourseForm.js'
 import { userActions } from './actions/userActions.js'
+import StudentsContainer from './containers/StudentsContainer.js'
 
 class App extends Component {
   
@@ -37,6 +38,7 @@ class App extends Component {
           <Route exact path='/login' render={() => this.props.loggedIn ? <Redirect to="/" /> : <LoginContainer />} />
           <Route exact path='/signup' render={() => this.props.loggedIn ? <Redirect to="/" /> : <SignUp />} />
           <Route exact path="/logout" render={() => this.props.loggedIn ? <Logout /> : <Redirect to="/" />} />
+          <Route exact path="/students" render={() => this.props.loggedIn ? <StudentsContainer /> : <Redirect to="/"/>} />
           <Route render={() => <NoRoute />} />
         </Switch>
       </Router>

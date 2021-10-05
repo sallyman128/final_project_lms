@@ -10,6 +10,7 @@ class NavBar extends Component {
       return [
         {name: "Dashboard", url: "/"},
         {name: "Catalog", url: "/courses"},
+        {name: "Students", url: "/students"},
         {name: "Logout", url: "/logout"}
       ]
     } else {
