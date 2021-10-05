@@ -2,7 +2,7 @@ const baseAPI = "http://localhost:9999/api/v1"
 
 const postNewAssignment = (assignmentInfo) => {
   return dispatch => {
-    console.log('before config options')
+    dispatch({type: "LOADING_ASSIGNMENT_REQUEST"})
     const configOptions = {
       method: "POST",
       headers: {
@@ -14,13 +14,13 @@ const postNewAssignment = (assignmentInfo) => {
         assignment: assignmentInfo
       })
     }
-    console.log('after config options')
     fetch(`${baseAPI}/assignments`, configOptions)
-      .then(resp => resp.json)
+      .then(resp => resp.json())
       .then(data => {
-        return console.log(data)
+        console.log(data)
+        const payload = data.assignment
+        dispatch({type: "ADD_ASSIGNMENT", payload})
       })
-    console.log('after fetch')
   }
 }
 
