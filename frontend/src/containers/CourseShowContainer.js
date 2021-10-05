@@ -23,16 +23,18 @@ class CourseShowContainer extends Component {
     // this.render(<Redirect to='/' />)
   }
 
-  // returns only the students not assigned to the course
   notEnrolledStudents = () => {
+    const thisCourseId = this.findThisCourse().id
     const allStudents = this.props.students
-    const thisCourseStudents = this.findThisCourse().students
-    return allStudents
+    const notEnrolled = allStudents.filter(student => !student.course_ids.includes(thisCourseId))
+    return notEnrolled
   }
 
   enrolledStudents = () => {
+    const thisCourseId = this.findThisCourse().id
     const allStudents = this.props.students
-    return allStudents
+    const enrolled = allStudents.filter(student => student.course_ids.includes(thisCourseId))
+    return enrolled
   }
 
   render() {
