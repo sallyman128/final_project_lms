@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import CourseShow from "../components/CourseShow";
+import CourseShowPublic from "../components/CourseShowPublic";
+import CourseShowPrivate from "../components/CourseShowPrivate";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { courseActions } from "../actions/courseActions";
@@ -22,11 +23,40 @@ class CourseShowContainer extends Component {
     // this.render(<Redirect to='/' />)
   }
 
+  // returns only the students not assigned to the course
+  notEnrolledStudents = () => {
+    const allStudents = this.props.students
+    const thisCourseStudents = this.findThisCourse().students
+    return allStudents
+  }
+
+  enrolledStudents = () => {
+    const allStudents = this.props.students
+    return allStudents
+  }
+
   render() {
     const thisCourse = this.findThisCourse()
+    if (this.props.loggedIn) {
+      return (
+        <div>
+          {!!thisCourse ? 
+            <CourseShowPrivate 
+            course={thisCourse} 
+            handleDelete={this.handleDelete}
+            notEnrolledStudents={this.notEnrolledStudents()}
+            enrolledStudents={this.enrolledStudents()}
+            />
+            : <Redirect to='/courses' />}
+      </div>
+      )
+    }
     return (
       <div>
-        {!!thisCourse ? <CourseShow course={thisCourse} handleDelete={this.handleDelete} freeStudents={this.props.students}/>
+        {!!thisCourse ? 
+          <CourseShowPublic 
+            course={thisCourse} 
+          />
           : <Redirect to='/courses' />}
       </div>
     )
@@ -36,7 +66,8 @@ class CourseShowContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     courses: state.coursesReducer.courses,
-    students: state.studentsReducer.students
+    students: state.studentsReducer.students,
+    loggedIn: state.usersReducer.loggedIn
   }
 }
 
