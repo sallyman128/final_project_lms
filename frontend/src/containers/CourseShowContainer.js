@@ -26,7 +26,8 @@ class CourseShowContainer extends Component {
     const thisCourse = this.findThisCourse()
     return (
       <div>
-        {!!thisCourse ? <CourseShow course={thisCourse} handleDelete={this.handleDelete}/> : <Redirect to='/courses' />}
+        {!!thisCourse ? <CourseShow course={thisCourse} handleDelete={this.handleDelete} freeStudents={this.props.students}/>
+          : <Redirect to='/courses' />}
       </div>
     )
   }
@@ -34,7 +35,8 @@ class CourseShowContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    courses: state.coursesReducer.courses
+    courses: state.coursesReducer.courses,
+    students: state.studentsReducer.students
   }
 }
 
