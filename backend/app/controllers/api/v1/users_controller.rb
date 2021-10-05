@@ -7,9 +7,9 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     user = User.create(user_params)
-    if @user.valid?
-      session[:user_id] = @user.id
-      token = encode_token(user_id: @user.id)
+    if user.valid?
+      session[:user_id] = user.id
+      token = encode_token(user_id: user.id)
       courses = user.courses.map{ |course| CourseSerializer.new(course) }
       students = Student.all.map{ |student| StudentSerializer.new(student) }
       render json: {user: UserSerializer.new(user), jwt: token, user_courses: courses, students:students }, status: :created

@@ -37,7 +37,7 @@ class CourseForm extends Component {
         </p>
         <p>
           Description:
-          <textarea id="description"onChange={this.handleOnChange} value={this.state.description} />
+          <textarea id="description" onChange={this.handleOnChange} value={this.state.description} />
         </p>
         <input type="submit" />
       </form>
