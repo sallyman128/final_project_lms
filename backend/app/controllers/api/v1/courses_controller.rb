@@ -1,6 +1,7 @@
 class Api::V1::CoursesController < ApplicationController
   skip_before_action :authorized, only: [:index]
 
+
   def index
     courses = Course.all.map{ |course| CourseSerializer.new(course)}
     render json: {
@@ -20,7 +21,11 @@ class Api::V1::CoursesController < ApplicationController
 
   def destroy
     course = Course.find_by(id: course_params['id'])
-    course.destroy
+    if current_user.courses.include?(course)
+      course.destroy
+    else
+      render json: {error: "failed to delete course", params: params}
+    end
   end
 
   private
