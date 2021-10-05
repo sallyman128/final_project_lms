@@ -2,7 +2,7 @@ import React from "react";
 
 const StudentsTable = ({students}) => {
   return (
-    <table>
+    <table id="students-table">
       <thead>
         <tr>
           <th>Name</th>
