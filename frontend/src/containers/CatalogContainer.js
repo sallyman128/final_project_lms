@@ -13,10 +13,6 @@ class CatalogContainer extends Component {
     )
   }
 
-  // handleDelete = () => {
-
-  // }
-
   render() {
     return(
       <div>

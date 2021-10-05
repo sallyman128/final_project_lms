@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import CourseShow from "../components/CourseShow";
 import { connect } from "react-redux";
-import { Redirect, useHistory } from "react-router";
+import { Redirect } from "react-router";
 import { courseActions } from "../actions/courseActions";
 
 class CourseShowContainer extends Component {
@@ -17,8 +17,9 @@ class CourseShowContainer extends Component {
   }
 
   handleDelete = (course) => {
-    console.log('pressed delete button');
+    console.log('pressed delete button')
     this.props.deleteCourse(course)
+    // this.render(<Redirect to='/' />)
   }
 
   render() {

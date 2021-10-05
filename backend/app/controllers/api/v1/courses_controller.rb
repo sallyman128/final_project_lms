@@ -19,7 +19,7 @@ class Api::V1::CoursesController < ApplicationController
   end
 
   def destroy
-    course = Course.find_by(id: course_params.id)
+    course = Course.find_by(id: course_params['id'])
     course.destroy
   end
 

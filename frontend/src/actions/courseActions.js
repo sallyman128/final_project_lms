@@ -11,6 +11,7 @@ const fetchCourses = () => {
 
 const addCourse = (courseInfo) => {
   return (dispatch) => {
+    dispatch({type: "LOADING_COURSES"})
     const configOptions = {
       method: "POST",
       headers: {
@@ -34,6 +35,7 @@ const addCourse = (courseInfo) => {
 
 const deleteCourse = (courseInfo) => {
   return (dispatch) => {
+    // dispatch({type: "LOADING_COURSES"})
     const configOptions = {
       method: "DELETE",
       headers: {
@@ -46,10 +48,11 @@ const deleteCourse = (courseInfo) => {
       }),
     }
 
-    fetch(`${baseAPI}/courses`, configOptions)
+    fetch(`${baseAPI}/courses/${courseInfo.id}`, configOptions)
       .then(resp => resp.json())
-      .then(() => {
-        dispatch({type: "DELETE_COURSE", payload: {course: courseInfo}})
+      .then((data) => {
+        console.log(data)
+        return dispatch({type: "DELETE_COURSE", payload: {course: courseInfo}})
         // dispatch({type: "DELETE_USER_COURSE", payload: courseInfo})
       })
   }
