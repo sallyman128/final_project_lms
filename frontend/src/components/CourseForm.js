@@ -27,19 +27,46 @@ class CourseForm extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.props.addCourse(this.state.course)
+    if (this.valid()) {
+      this.props.addCourse(this.state.course)
+      this.setState({
+        course: {
+          title: "",
+          description: ""
+        }
+      })
+    }
+  }
+
+  valid = () => {
+    let errors = []
+    let valid = true
+
+    if (this.state.course.title === "") {
+      valid = false
+      errors.push("Please enter a title.")
+    }
+
+    if (this.state.course.description === "") {
+      valid = false
+      errors.push("Please enter a description.")
+    }
+
     this.setState({
-      course: {
-        title: "",
-        description: ""
-      }
+      errors: errors
     })
+    return valid
   }
 
   render() {
     return (
       <form id="#newCourseForm" onSubmit={this.handleOnSubmit}>
         <h1>New course form</h1>
+        <div id="errors-list">
+          <ul>
+            {this.state.errors.map( error => <li>{error}</li>)}
+          </ul>
+        </div>
         <p>
           Title:
           <input type="string" id="title" onChange={this.handleOnChange} value={this.state.title} />
