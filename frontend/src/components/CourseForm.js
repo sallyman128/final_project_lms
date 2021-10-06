@@ -8,7 +8,8 @@ class CourseForm extends Component {
     this.state = {
       course: {
         title: "",
-        description: ""
+        description: "",
+        userId: ""
       },
       errors: []
     }
@@ -81,10 +82,16 @@ class CourseForm extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    // currentUserId: state.use
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addCourse: (courseInfo) => dispatch(courseActions.addCourse(courseInfo))
   }
 }
 
-export default connect(null, mapDispatchToProps)(CourseForm)
+export default connect(mapStateToProps, mapDispatchToProps)(CourseForm)

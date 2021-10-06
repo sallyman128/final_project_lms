@@ -205,7 +205,7 @@ const mapStateToProps = (state) => {
     courses: state.coursesReducer.courses,
     students: state.studentsReducer.students,
     loggedIn: state.usersReducer.loggedIn,
-    user: state.usersReducer.user,
+    user: state.usersReducer.currentUser,
     assignments: state.assignmentsReducer.assignments
   }
 }

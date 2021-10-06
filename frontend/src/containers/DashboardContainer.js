@@ -33,7 +33,7 @@ class DashboardContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.usersReducer.user,
+    user: state.usersReducer.currentUser,
     courses: state.coursesReducer.courses
   }
 }

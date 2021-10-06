@@ -1,5 +1,5 @@
 const initState = {
-  user: {
+  currentUser: {
     id: "",
     name: "",
     email: "",
@@ -22,7 +22,7 @@ const usersReducer = (state=initState, action) => {
       console.log("adding user")
       return {
         ...state,
-        user: {
+        currentUser: {
           id: action.userPayload.user.id,
           name: action.userPayload.user.name,
           email: action.userPayload.user.email,
