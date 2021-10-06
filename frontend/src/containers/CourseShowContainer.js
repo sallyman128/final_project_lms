@@ -34,7 +34,6 @@ class CourseShowContainer extends Component {
   handleDelete = (courseInfo) => {
     console.log('pressed delete button')
     this.props.deleteCourse(courseInfo)
-    // this.render(<Redirect to='/' />)
   }
 
   isUserAssignedToCourse = () => {

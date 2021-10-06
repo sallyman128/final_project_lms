@@ -23,6 +23,7 @@ class Api::V1::CoursesController < ApplicationController
     course = Course.find_by(id: course_params['id'])
     if current_user.courses.include?(course)
       course.destroy
+      render json: {message: "successfully deleted course"}
     else
       render json: {error: "failed to delete course", params: params}
     end
