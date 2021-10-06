@@ -25,6 +25,12 @@ class CourseShowContainer extends Component {
     return thisCourse
   }
 
+  courseAssignments = () => {
+    const thisCourse = this.findThisCourse()
+    const allAssignments = this.props.assignments
+    return allAssignments.filter( assignment => assignment.course_id === thisCourse.id)
+  }
+
   handleDelete = (course) => {
     console.log('pressed delete button')
     this.props.deleteCourse(course)
@@ -33,7 +39,7 @@ class CourseShowContainer extends Component {
 
   isUserAssignedToCourse = () => {
     const thisCourseId = this.findThisCourse().id
-    const userCoursesIds = this.props.user.course_ids
+    const userCoursesIds = this.props.user.courseIds
     return userCoursesIds.includes(thisCourseId)
   }
 
@@ -171,7 +177,8 @@ class CourseShowContainer extends Component {
         <div>
           {!!thisCourse ? 
             <CourseShowPrivate 
-            course={thisCourse} 
+            course={thisCourse}
+            assignments={this.courseAssignments()}
             handleDelete={this.handleDelete}
             enrolledStudents={this.enrolledStudents()}
             handleShowAssignmentFields={this.handleShowAssignmentFields}
@@ -199,7 +206,8 @@ const mapStateToProps = (state) => {
     courses: state.coursesReducer.courses,
     students: state.studentsReducer.students,
     loggedIn: state.usersReducer.loggedIn,
-    user: state.usersReducer.user
+    user: state.usersReducer.user,
+    assignments: state.assignmentsReducer.assignments
   }
 }
 

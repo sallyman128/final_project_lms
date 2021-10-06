@@ -1,7 +1,7 @@
 import React from "react";
 import StudentsTable from "./StudentsTable";
 
-const CourseShowPrivate = ({course, handleDelete, enrolledStudents, handleShowAssignmentFields, isUserAssignedToCourse, newAssignmentErrors}) => {
+const CourseShowPrivate = ({assignments, course, handleDelete, enrolledStudents, handleShowAssignmentFields, isUserAssignedToCourse, newAssignmentErrors}) => {
   return (
     <div>
       <h1>Title: {course.title}</h1>
@@ -20,7 +20,7 @@ const CourseShowPrivate = ({course, handleDelete, enrolledStudents, handleShowAs
         {isUserAssignedToCourse ? <button id= "showAssignmentFieldsButton" onClick={() => handleShowAssignmentFields()}>Add Assignment</button> : null }
       </div>
       <ol>
-        {course.assignments.map( assignment => {
+        {assignments.map( assignment => {
           return (
             <div key={assignment.id}>
               <li>{assignment.title}</li>
