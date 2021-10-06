@@ -12,7 +12,8 @@ class DashboardContainer extends Component {
 
   findUserCourses() {
     const currentUser = this.props.user;
-    const currentUserCourses = this.props.courses.filter( course => course.user_ids.includes(currentUser.id) )
+    const allCourses = this.props.courses
+    const currentUserCourses = allCourses.filter(course => course.user_ids.includes(currentUser.id))
     return currentUserCourses
   }
 
@@ -33,9 +34,6 @@ class DashboardContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.usersReducer.user,
-    // name: state.usersReducer.user.name,
-    // email: state.usersReducer.user.email,
-    // courses: state.usersReducer.user.courses
     courses: state.coursesReducer.courses
   }
 }

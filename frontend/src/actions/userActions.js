@@ -21,11 +21,13 @@ const signup = (userInfo) => {
           console.log(data.error)
           console.log('user email already has an account')
         } else {
-          const userPayload = {user: data.user, courses: data.user_courses}
+          const userPayload = {user: {id: data.user.id, email: data.user.email, name: data.user.name, course_ids: data.user_course_ids} }
           const studentsPayload = {students: data.students}
+          const assignmentsPayload = {assignments: data.assignments}
           localStorage.setItem("jwt", data.jwt);
           dispatch({type: "ADD_USER", userPayload})
           dispatch({type: "ADD_STUDENTS", studentsPayload})
+          dispatch({type: "ADD_ALL_ASSIGNMENTS", assignmentsPayload})
         }
       })
   }
@@ -52,11 +54,13 @@ const login = (userInfo) => {
         if (data.error) {
           console.log(data.error)
         } else {
-          const userPayload = {user: {email: data.user.email, name: data.user.name, course_ids: data.user_course_ids} }
+          const userPayload = {user: {id: data.user.id, email: data.user.email, name: data.user.name, course_ids: data.user_course_ids} }
           const studentsPayload = {students: data.students}
+          const assignmentsPayload = {assignments: data.assignments}
           localStorage.setItem('jwt', data.jwt)
           dispatch({type: "ADD_USER", userPayload})
           dispatch({type: "ADD_STUDENTS", studentsPayload})
+          dispatch({type: "ADD_ALL_ASSIGNMENTS", assignmentsPayload})
         }
       })
   }

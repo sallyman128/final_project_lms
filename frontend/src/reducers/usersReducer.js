@@ -1,5 +1,6 @@
 const initState = {
   user: {
+    id: "",
     name: "",
     email: "",
     course_ids: []
@@ -22,6 +23,7 @@ const usersReducer = (state=initState, action) => {
       return {
         ...state,
         user: {
+          id: action.userPayload.user.id,
           name: action.userPayload.user.name,
           email: action.userPayload.user.email,
           course_ids: action.userPayload.user.course_ids
