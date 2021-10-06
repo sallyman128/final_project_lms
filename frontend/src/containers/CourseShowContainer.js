@@ -33,7 +33,7 @@ class CourseShowContainer extends Component {
 
   isUserAssignedToCourse = () => {
     const thisCourseId = this.findThisCourse().id
-    const userCoursesIds = this.props.userCourses.map( course => course.id )
+    const userCoursesIds = this.props.user.course_ids
     return userCoursesIds.includes(thisCourseId)
   }
 
@@ -199,7 +199,7 @@ const mapStateToProps = (state) => {
     courses: state.coursesReducer.courses,
     students: state.studentsReducer.students,
     loggedIn: state.usersReducer.loggedIn,
-    userCourses: state.usersReducer.user.courses
+    user: state.usersReducer.user
   }
 }
 

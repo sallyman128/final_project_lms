@@ -26,7 +26,7 @@ const usersReducer = (state=initState, action) => {
           id: action.userPayload.user.id,
           name: action.userPayload.user.name,
           email: action.userPayload.user.email,
-          course_ids: action.userPayload.user.course_ids
+          courseIds: action.userPayload.user.courseIds
         },
         loggedIn: true,
         loading: false
