@@ -52,7 +52,7 @@ const login = (userInfo) => {
         if (data.error) {
           console.log(data.error)
         } else {
-          const userPayload = {user: data.user, courses: data.user_courses}
+          const userPayload = {user: {email: data.user.email, name: data.user.name, course_ids: data.user_course_ids} }
           const studentsPayload = {students: data.students}
           localStorage.setItem('jwt', data.jwt)
           dispatch({type: "ADD_USER", userPayload})

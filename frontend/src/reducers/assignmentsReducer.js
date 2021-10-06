@@ -16,7 +16,7 @@ const assignmentsReducer = (state=initState, action) => {
       console.log("adding all assignments")
       return {
         ...state,
-        assignments: [...payload],
+        assignments: [...action.payload],
         loading: false
       }
 

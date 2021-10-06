@@ -4,16 +4,23 @@ import { connect } from "react-redux";
 
 class DashboardContainer extends Component {
   renderUserCourses() {
+    const currentUserCourses = this.findUserCourses()
     return (
-      this.props.courses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
+      currentUserCourses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
     )
+  }
+
+  findUserCourses() {
+    const currentUser = this.props.user;
+    const currentUserCourses = this.props.courses.filter( course => course.user_ids.includes(currentUser.id) )
+    return currentUserCourses
   }
 
   render() {
     return (
       <div>
-        <h1>Welcome {this.props.name}</h1>
-        <h3>Email: {this.props.email}</h3>
+        <h1>Welcome {this.props.user.name}</h1>
+        <h3>Email: {this.props.user.email}</h3>
         <label>Below are the courses you are assigned to:</label>
         <div>
           {this.renderUserCourses()}
@@ -25,9 +32,11 @@ class DashboardContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    name: state.usersReducer.user.name,
-    email: state.usersReducer.user.email,
-    courses: state.usersReducer.user.courses
+    user: state.usersReducer.user,
+    // name: state.usersReducer.user.name,
+    // email: state.usersReducer.user.email,
+    // courses: state.usersReducer.user.courses
+    courses: state.coursesReducer.courses
   }
 }
 
