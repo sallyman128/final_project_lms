@@ -32,6 +32,7 @@ const coursesReducer = (state=initState, action) => {
 
     case "DELETE_COURSE":
       console.log("deleting course")
+      debugger;
       return {
         ...state,
         courses: [...state.courses.filter( (course) => course.id !== action.payload.course.id )],

@@ -31,9 +31,9 @@ class CourseShowContainer extends Component {
     return allAssignments.filter( assignment => assignment.course_id === thisCourse.id)
   }
 
-  handleDelete = (course) => {
+  handleDelete = (courseInfo) => {
     console.log('pressed delete button')
-    this.props.deleteCourse(course)
+    this.props.deleteCourse(courseInfo)
     // this.render(<Redirect to='/' />)
   }
 
@@ -213,7 +213,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteCourse: (course) => dispatch(courseActions.deleteCourse(course)),
+    deleteCourse: (courseId) => dispatch(courseActions.deleteCourse(courseId)),
     addAssignment: (assignment) => dispatch(assignmentActions.postNewAssignment(assignment))
   }
 }

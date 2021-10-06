@@ -45,15 +45,18 @@ const deleteCourse = (courseInfo) => {
       },
       body: JSON.stringify({
         course: courseInfo
-      }),
+      })
     }
 
     fetch(`${baseAPI}/courses/${courseInfo.id}`, configOptions)
-      .then(resp => resp.json())
-      .then((data) => {
-        if(!data.error) {
+      .then( resp => resp.json())
+      .then( data => {
+        if(data.error) {
+          console.log('couldnt delete course (in fetch)')
+          console.log(data)
+        } else {
           dispatch({type: "DELETE_COURSE", payload: {course: courseInfo}})
-        }
+        } 
         // dispatch({type: "DELETE_USER_COURSE", payload: courseInfo})
       })
   }
