@@ -9,7 +9,6 @@ class CourseForm extends Component {
       course: {
         title: "",
         description: "",
-        userId: ""
       },
       errors: []
     }

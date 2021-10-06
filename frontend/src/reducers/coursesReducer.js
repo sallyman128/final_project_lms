@@ -26,7 +26,7 @@ const coursesReducer = (state=initState, action) => {
       console.log("adding new course")
       return {
         ...state,
-        courses: [...state.courses, action.payload.course],
+        courses: [...state.courses, action.coursePayload.course],
         loading: false
       }
 

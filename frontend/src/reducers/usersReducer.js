@@ -3,7 +3,7 @@ const initState = {
     id: "",
     name: "",
     email: "",
-    course_ids: []
+    courseIds: []
   },
   loggedIn: false,
   loading: false
@@ -32,6 +32,16 @@ const usersReducer = (state=initState, action) => {
         loading: false
       }
 
+    case "USER_ADD_COURSE":
+      console.log("adding course to currentUser course list")
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          courseIds: [...state.currentUser.courseIds, action.coursePayload.course.id]
+        }
+      }
+      
     case "REMOVE_USER":
       console.log("removing user")
       return {
