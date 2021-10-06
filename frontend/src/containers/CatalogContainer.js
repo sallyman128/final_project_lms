@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import CourseCard from "../components/CourseCard";
 import {connect} from 'react-redux'
 import { Link } from "react-router-dom";
-import { courseActions } from "../actions/courseActions";
 
 class CatalogContainer extends Component {
 
@@ -31,11 +30,5 @@ const mapStateToProps = (state) => {
     loggedIn: state.usersReducer.loggedIn
   }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-
-//   }
-// }
 
 export default connect(mapStateToProps, null)(CatalogContainer)

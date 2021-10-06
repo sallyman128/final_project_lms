@@ -6,24 +6,33 @@ class CourseForm extends Component {
   constructor() {
     super();
     this.state = {
-      title: "",
-      description: ""
+      course: {
+        title: "",
+        description: ""
+      },
+      errors: []
     }
   }
 
   handleOnChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
+    this.setState( prevState => {
+      return {
+        course: {
+          ...prevState.course,
+          [e.target.id]: e.target.value
+        }
+      }
     })
   }
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log("submitting course form");
-    this.props.addCourse(this.state)
+    this.props.addCourse(this.state.course)
     this.setState({
-      title: "",
-      description: ""
+      course: {
+        title: "",
+        description: ""
+      }
     })
   }
 
