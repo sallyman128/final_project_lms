@@ -1,23 +1,23 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
+
+import "./App.css"
+
 import Home from './components/Home.js'
 import NoRoute from './components/NoRoute.js'
 import NavBar from './containers/NavBarContainer.js'
-
 import SignUp from './components/SignUp.js'
 import Logout from './components/Logout.js'
-
 import Dashboard from './containers/DashboardContainer.js'
 import Catalog from './containers/CatalogContainer.js'
 import CourseShow from './containers/CourseShowContainer.js'
 import Login from './containers/LoginContainer.js'
-import { courseActions } from './actions/courseActions.js'
 import NewCourseForm from './components/NewCourseForm.js'
-import { userActions } from './actions/userActions.js'
 import StudentsIndex from './containers/StudentsContainer.js'
 
-import "./App.css"
+import { courseActions } from './actions/courseActions.js'
+import { userActions } from './actions/userActions.js'
 
 class App extends Component {
   
