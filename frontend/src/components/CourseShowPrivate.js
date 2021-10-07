@@ -25,7 +25,7 @@ const CourseShowPrivate = ({assignments, course, handleDelete, enrolledStudents,
           <ol>
             {assignments.map( assignment => {
               return (
-                <div key={assignment.id}>
+                <div key={assignment.id} id={assignment.id} class="assignment">
                   <li>{assignment.title}</li>
                   <i>{assignment.description}</i>
                 </div>

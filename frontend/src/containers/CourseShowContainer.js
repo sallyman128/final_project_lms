@@ -14,7 +14,6 @@ class CourseShowContainer extends Component {
       assignment: {
         title: "",
         description: "",
-        // dueDate: "",
         course_id: ""
       },
       newAssignmentErrors: []
@@ -64,10 +63,6 @@ class CourseShowContainer extends Component {
         <label>Description: </label>
         <input type='text' id='newAssignmentDescription' value='' />
       </div>
-      <div>
-        <label>Due Date: </label>
-        <input type='date' id='newAssignmentDueDate' />
-      </div>
       <p>
         <button id="submitAssignment">Submit New Assignment</button>
         <button id="cancelNewAssignment">Cancel</button>
@@ -103,16 +98,6 @@ class CourseShowContainer extends Component {
             }
           }
         })
-      case 'newAssignmentDueDate':
-        this.setState(prevState => {
-          return {
-            ...prevState,
-            assignment: {
-              ...prevState.assignment,
-              dueDate: e.target.value
-            }
-          }
-        })
     }
   }
 
@@ -129,7 +114,7 @@ class CourseShowContainer extends Component {
       })
 
       if (this.validateAssignmentState()) {
-        console.log('no errors in state')
+        console.log('no errors in newAssignment state')
         this.props.addAssignment(this.state.assignment)
         this.resetNewAssignmentFields()
       }
