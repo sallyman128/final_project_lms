@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
 import { courseActions } from "../actions/courseActions";
 
 class CourseForm extends Component {
@@ -10,6 +11,7 @@ class CourseForm extends Component {
         title: "",
         description: "",
       },
+      submitted: false,
       errors: []
     }
   }
@@ -27,18 +29,22 @@ class CourseForm extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    if (this.valid()) {
+    if (this.validate()) {
       this.props.addCourse(this.state.course)
       this.setState({
-        course: {
-          title: "",
-          description: ""
-        }
+        submitted: true
       })
+      // return <Redirect to="/courses"/>
+      // this.setState({
+      //   course: {
+      //     title: "",
+      //     description: ""
+      //   }
+      // })
     }
   }
 
-  valid = () => {
+  validate = () => {
     let errors = []
     let valid = true
 
@@ -60,30 +66,27 @@ class CourseForm extends Component {
 
   render() {
     return (
-      <form id="#newCourseForm" onSubmit={this.handleOnSubmit}>
-        <h1>New course form</h1>
-        <div id="errors-list">
-          <ul>
-            {this.state.errors.map( error => <li>{error}</li>)}
-          </ul>
-        </div>
-        <p>
-          Title:
-          <input type="string" id="title" onChange={this.handleOnChange} value={this.state.title} />
-        </p>
-        <p>
-          Description:
-          <textarea id="description" onChange={this.handleOnChange} value={this.state.description} />
-        </p>
-        <input type="submit" />
-      </form>
+      <div id="newCourseComponent">
+        {this.state.submitted ? <Redirect to="/courses" /> : null }
+        <form id="#newCourseForm" onSubmit={this.handleOnSubmit}>
+          <h1>New course form</h1>
+          <div id="errors-list">
+            <ul>
+              {this.state.errors.map( error => <li>{error}</li>)}
+            </ul>
+          </div>
+          <p>
+            Title:
+            <input type="string" id="title" onChange={this.handleOnChange} value={this.state.course.title} />
+          </p>
+          <p>
+            Description:
+            <textarea id="description" onChange={this.handleOnChange} value={this.state.course.description} />
+          </p>
+          <input type="submit" />
+        </form>
+      </div>
     )
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    // currentUserId: state.use
   }
 }
 
@@ -93,4 +96,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CourseForm)
+export default connect(null, mapDispatchToProps)(CourseForm)
