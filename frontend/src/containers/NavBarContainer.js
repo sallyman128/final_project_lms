@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import {Link} from 'react-router-dom'
 import { connect } from "react-redux"
+import "./NavBarContainer.css"
 
 class NavBar extends Component {
 
@@ -24,7 +25,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div>
+      <div id="NavBarDiv">
         <ul className="NavBar">
           <li id='appTitle'>MyLMS</li>
           {this.linksToDisplay().map( ({url, name}) => {

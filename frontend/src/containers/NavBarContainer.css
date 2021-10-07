@@ -1,0 +1,33 @@
+ul.NavBar > li#appTitle {
+  background-color: darkblue;
+  color: black;
+  font-weight: bold;
+  list-style-type: none;
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.NavBar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: lightblue;
+}
+
+ul.NavBar > a > li {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.NavBar > a > li:hover{
+  background-color: blueviolet;
+  color: white
+}
