@@ -27,9 +27,13 @@ const addCourse = (courseInfo) => {
     fetch(`${baseAPI}/courses`, configOptions)
       .then(resp => resp.json())
       .then(data => {
-        const coursePayload = {course: data.course}
-        dispatch({type:"ADD_COURSE", coursePayload})
-        dispatch({type: "USER_ADD_COURSE", coursePayload})
+        if (data.error) {
+          console.log(data.error)
+        } else {
+          const coursePayload = {course: data.course}
+          dispatch({type:"ADD_COURSE", coursePayload})
+          dispatch({type: "USER_ADD_COURSE", coursePayload})
+        }
       })
   }
 }

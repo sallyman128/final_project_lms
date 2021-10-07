@@ -17,9 +17,12 @@ const postNewAssignment = (assignmentInfo) => {
     fetch(`${baseAPI}/assignments`, configOptions)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data)
-        const payload = data.assignment
-        dispatch({type: "ADD_ASSIGNMENT", payload})
+        if (data.error) {
+          console.log(data.error)
+        } else {
+          const payload = data.assignment
+          dispatch({type: "ADD_ASSIGNMENT", payload})
+        }
       })
   }
 }
