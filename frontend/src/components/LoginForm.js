@@ -33,7 +33,7 @@ class SignUp extends Component {
     if(this.validate()) {
       console.log('submitting login form')
       this.props.login(this.state.user)
-      
+
       // if unable to login, push an error
       this.setState({errors: ["Invalid email or password"]})
     }

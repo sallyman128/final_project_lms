@@ -17,6 +17,8 @@ import CourseForm from './components/CourseForm.js'
 import { userActions } from './actions/userActions.js'
 import StudentsContainer from './containers/StudentsContainer.js'
 
+import "./App.css"
+
 class App extends Component {
   
   componentDidMount() {

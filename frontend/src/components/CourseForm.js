@@ -34,13 +34,6 @@ class CourseForm extends Component {
       this.setState({
         submitted: true
       })
-      // return <Redirect to="/courses"/>
-      // this.setState({
-      //   course: {
-      //     title: "",
-      //     description: ""
-      //   }
-      // })
     }
   }
 
@@ -70,7 +63,7 @@ class CourseForm extends Component {
         {this.state.submitted ? <Redirect to="/courses" /> : null }
         <form id="#newCourseForm" onSubmit={this.handleOnSubmit}>
           <h1>New course form</h1>
-          <div id="errors-list">
+          <div className="error-messages">
             <ul>
               {this.state.errors.map( error => <li>{error}</li>)}
             </ul>
