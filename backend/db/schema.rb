@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 2021_09_28_224949) do
   create_table "assignments", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.datetime "due_date"
     t.integer "course_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
