@@ -33,6 +33,9 @@ class SignUp extends Component {
     if(this.validate()) {
       console.log('submitting login form')
       this.props.login(this.state.user)
+      
+      // if unable to login, push an error
+      this.setState({errors: ["Invalid email or password"]})
     }
   }
 
@@ -53,6 +56,13 @@ class SignUp extends Component {
     this.setState({errors})
     return isValid
   }
+
+  // onLoginPage = () => {
+  //   const loginTitle = document.getElementById("login-title")
+  //   const errors = []
+  //   !!loginTitle ? errors.push("") : null
+  //   this.setState({errors: errors})
+  // }
 
   render() {
     return (
