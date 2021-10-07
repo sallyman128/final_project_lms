@@ -40,12 +40,7 @@ class SignUp extends Component {
     let errors = []
     let isValid = true
   
-    if(!this.state.user.email) {
-      isValid = false
-      errors.push("Please enter your email address.")
-    }
-
-    if(!validator.isEmail(this.state.user.email)) {
+    if(!this.state.user.email || !validator.isEmail(this.state.user.email)) {
       isValid = false
       errors.push("Please enter a valid email address.")
     }
@@ -64,7 +59,7 @@ class SignUp extends Component {
       <form onSubmit={this.handleOnSubmit}>
         <div className="error-messages">
           <ul>
-            {this.state.errors.map( error => <li>{error}</li>)}
+            {this.state.errors.map( error => <li key={error}>{error}</li>)}
           </ul>
         </div>
 
