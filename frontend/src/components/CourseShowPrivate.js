@@ -9,29 +9,34 @@ const CourseShowPrivate = ({assignments, course, handleDelete, enrolledStudents,
       <h2>Description: {course.description}</h2>
 
       <h3>Students</h3>
-      <StudentsTable students={enrolledStudents}/>
+      {enrolledStudents.length === 0 ? <p>No students assigned</p> : <StudentsTable students={enrolledStudents}/> }
 
       <h3>Assignments</h3>
 
       <ul id='new-assignment-errors'>
-          {newAssignmentErrors.map(error => <li key={error}>{error}</li>)}
+        {newAssignmentErrors.map(error => <li key={error}>{error}</li>)}
       </ul>
       <div id="add-assignment">
         {isUserAssignedToCourse ? <button id= "showAssignmentFieldsButton" onClick={() => handleShowAssignmentFields()}>Add Assignment</button> : null }
       </div>
-      <ol>
-        {assignments.map( assignment => {
-          return (
-            <div key={assignment.id}>
-              <li>{assignment.title}</li>
-              <i>{assignment.description}</i>
-            </div>
-          )
-        })}
-      </ol>
 
-      <button onClick={() => handleDelete(course)}>Delete Course</button>
-      {/* <button>Edit Course</button> */}
+      {assignments.length === 0 ? <p>No assignments assigned</p> : 
+        <div>
+          <ol>
+            {assignments.map( assignment => {
+              return (
+                <div key={assignment.id}>
+                  <li>{assignment.title}</li>
+                  <i>{assignment.description}</i>
+                </div>
+              )
+            })}
+          </ol>
+        </div>
+      }
+
+      {isUserAssignedToCourse ? <button onClick={() => handleDelete(course)}>Delete Course</button> : null }
+      {/* <button>Edit Course Details</button> */}
     </div>
   )
 }
