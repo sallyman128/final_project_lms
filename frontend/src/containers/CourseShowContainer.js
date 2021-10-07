@@ -14,6 +14,7 @@ class CourseShowContainer extends Component {
       assignment: {
         title: "",
         description: "",
+        // dueDate: "",
         course_id: ""
       },
       newAssignmentErrors: []
@@ -55,10 +56,18 @@ class CourseShowContainer extends Component {
   handleShowAssignmentFields = () => {
     const div = document.getElementById('add-assignment')
     const assignmentForm = `
-      <label>Title: </label>
-      <input type='text' id='newAssignmentTitle' value='' />
-      <label>Description: </label>
-      <input id='newAssignmentDescription' value='' />
+      <div>
+        <label>Title: </label>
+        <input type='text' id='newAssignmentTitle' value='' />
+      </div>
+      <div>
+        <label>Description: </label>
+        <input type='text' id='newAssignmentDescription' value='' />
+      </div>
+      <div>
+        <label>Due Date: </label>
+        <input type='date' id='newAssignmentDueDate' />
+      </div>
       <p>
         <button id="submitAssignment">Submit New Assignment</button>
         <button id="cancelNewAssignment">Cancel</button>
@@ -73,26 +82,37 @@ class CourseShowContainer extends Component {
 
   // dynamically update state with the inputted assignment details
   updateStateAssignment = (e) => {
-    if(e.target.id === 'newAssignmentTitle') {
-      this.setState(prevState => {
-        return {
-          ...prevState,
-          assignment: {
-            ...prevState.assignment,
-            title: e.target.value
+    switch(e.target.id) {
+      case "newAssignmentTitle":
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            assignment: {
+              ...prevState.assignment,
+              title: e.target.value
+            }
           }
-        }
-      })
-    } else if (e.target.id === 'newAssignmentDescription') {
-      this.setState(prevState => {
-        return {
-          ...prevState,
-          assignment: {
-            ...prevState.assignment,
-            description: e.target.value
+        })
+      case 'newAssignmentDescription':
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            assignment: {
+              ...prevState.assignment,
+              description: e.target.value
+            }
           }
-        }
-      })
+        })
+      case 'newAssignmentDueDate':
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            assignment: {
+              ...prevState.assignment,
+              dueDate: e.target.value
+            }
+          }
+        })
     }
   }
 
