@@ -3,10 +3,10 @@ u1 = User.create(name: "Kakashi Hatake", email: "kakashi@sensei.com", password: 
 c1 = Course.create(title: "Mathematics", description: "A course on numbers.")
 c2 = Course.create(title: "Science", description: "A course on planets and chemistry.")
 
-a1 = Assignment.create(title: "Homework 1", description: "Do this homework", due_date: Faker::Date.between(from: '1995-12-08', to: '2021-12-31'))
-a2 = Assignment.create(title: "Homework 2", description: "Do this homework", due_date: Faker::Date.between(from: '1995-12-08', to: '2021-12-31'))
-a3 = Assignment.create(title: "Homework 1", description: "Do this homework", due_date: Faker::Date.between(from: '1995-12-08', to: '2021-12-31'))
-a4 = Assignment.create(title: "Homework 2", description: "Do this homework", due_date: Faker::Date.between(from: '1995-12-08', to: '2021-12-31'))
+a1 = Assignment.create(title: "Homework 1 for course 1", description: "Do this homework")
+a2 = Assignment.create(title: "Homework 2 for course 1", description: "Do this homework")
+a3 = Assignment.create(title: "Homework 1 for course 2", description: "Do this homework")
+a4 = Assignment.create(title: "Homework 2 for course 2", description: "Do this homework")
 
 s1 = Student.create(name: "Naruto Uzamaki", email: "naruto@gmail.com")
 s2 = Student.create(name: "Sakura Haruno", email: "sakura@gmail.com")
