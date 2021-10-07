@@ -56,9 +56,10 @@ const deleteCourse = (courseInfo) => {
           console.log('couldnt delete course (in fetch)')
           console.log(data)
         } else {
-          dispatch({type: "DELETE_COURSE", payload: {course: courseInfo}})
+          const payload = {course: courseInfo}
+          dispatch({type: "DELETE_COURSE", payload})
+          dispatch({type: "REMOVE_USER_COURSE", payload})
         } 
-        // dispatch({type: "DELETE_USER_COURSE", payload: courseInfo})
       })
   }
 }

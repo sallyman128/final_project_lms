@@ -39,7 +39,19 @@ const usersReducer = (state=initState, action) => {
         currentUser: {
           ...state.currentUser,
           courseIds: [...state.currentUser.courseIds, action.coursePayload.course.id]
-        }
+        },
+        loading: false
+      }
+
+    case "REMOVE_USER_COURSE":
+      console.log("removing course from currentUser course list")
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          courseIds: [...state.currentUser.courseIds.filter( courseId => courseId !== action.payload.course.id )]
+        },
+        loading: false
       }
       
     case "REMOVE_USER":
