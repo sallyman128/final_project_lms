@@ -3,19 +3,19 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 import {connect} from 'react-redux'
 import Home from './components/Home.js'
 import NoRoute from './components/NoRoute.js'
-import NavBar from './components/NavBar.js'
+import NavBar from './containers/NavBarContainer.js'
 
 import SignUp from './components/SignUp.js'
 import Logout from './components/Logout.js'
 
-import DashboardContainer from './containers/DashboardContainer.js'
-import CatalogContainer from './containers/CatalogContainer.js'
-import CourseShowContainer from './containers/CourseShowContainer.js'
-import LoginContainer from './containers/LoginContainer.js'
+import Dashboard from './containers/DashboardContainer.js'
+import Catalog from './containers/CatalogContainer.js'
+import CourseShow from './containers/CourseShowContainer.js'
+import Login from './containers/LoginContainer.js'
 import { courseActions } from './actions/courseActions.js'
-import CourseForm from './components/CourseForm.js'
+import NewCourseForm from './components/NewCourseForm.js'
 import { userActions } from './actions/userActions.js'
-import StudentsContainer from './containers/StudentsContainer.js'
+import StudentsIndex from './containers/StudentsContainer.js'
 
 import "./App.css"
 
@@ -33,14 +33,14 @@ class App extends Component {
         <NavBar />
 
         <Switch>
-          <Route exact path='/' render={() => this.props.loggedIn ? <DashboardContainer /> : <Home />} />
-          <Route exact path="/courses" render={() => <CatalogContainer />} />
-          <Route path="/courses/new" render={() => this.props.loggedIn ? <CourseForm /> : <Redirect to="/courses" />} />
-          <Route path="/courses/:id" render={({match}) => <CourseShowContainer match={match} />} />
-          <Route exact path='/login' render={() => this.props.loggedIn ? <Redirect to="/" /> : <LoginContainer />} />
+          <Route exact path='/' render={() => this.props.loggedIn ? <Dashboard /> : <Home />} />
+          <Route exact path="/courses" render={() => <Catalog />} />
+          <Route path="/courses/new" render={() => this.props.loggedIn ? <NewCourseForm /> : <Redirect to="/courses" />} />
+          <Route path="/courses/:id" render={({match}) => <CourseShow match={match} />} />
+          <Route exact path='/login' render={() => this.props.loggedIn ? <Redirect to="/" /> : <Login />} />
           <Route exact path='/signup' render={() => this.props.loggedIn ? <Redirect to="/" /> : <SignUp />} />
           <Route exact path="/logout" render={() => this.props.loggedIn ? <Logout /> : <Redirect to="/" />} />
-          <Route exact path="/students" render={() => this.props.loggedIn ? <StudentsContainer /> : <Redirect to="/"/>} />
+          <Route exact path="/students" render={() => this.props.loggedIn ? <StudentsIndex /> : <Redirect to="/"/>} />
           <Route render={() => <NoRoute />} />
         </Switch>
       </Router>
