@@ -8,9 +8,13 @@ a2 = Assignment.create(title: "Homework 2 for course 1", description: "Do this h
 a3 = Assignment.create(title: "Homework 1 for course 2", description: "Do this homework")
 a4 = Assignment.create(title: "Homework 2 for course 2", description: "Do this homework")
 
-s1 = Student.create(name: "Naruto Uzamaki", email: "naruto@gmail.com")
-s2 = Student.create(name: "Sakura Haruno", email: "sakura@gmail.com")
-s3 = Student.create(name: "Sasuke Uchiha", email: "sasuke@gmail.com")
+s1 = Student.create(name: Faker::Name.first_name + " " + Faker::Name.last_name, email: Faker::Internet.email)
+s2 = Student.create(name: Faker::Name.first_name + " " + Faker::Name.last_name, email: Faker::Internet.email)
+s3 = Student.create(name: Faker::Name.first_name + " " + Faker::Name.last_name, email: Faker::Internet.email)
+
+20.times do 
+  Student.create(name: Faker::Name.first_name + " " + Faker::Name.last_name, email: Faker::Internet.email)
+end
 
 u1.courses << c1
 u1.courses << c2
@@ -25,5 +29,3 @@ c1.assignments << a1
 c1.assignments << a2
 c2.assignments << a3
 c2.assignments << a4
-
-
