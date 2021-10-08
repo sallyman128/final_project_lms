@@ -40,7 +40,7 @@ const addCourse = (courseInfo) => {
 
 const deleteCourse = (courseInfo) => {
   return (dispatch) => {
-    // dispatch({type: "LOADING_COURSES"})
+    dispatch({type: "LOADING_COURSES"})
     const configOptions = {
       method: "DELETE",
       headers: {
@@ -68,8 +68,37 @@ const deleteCourse = (courseInfo) => {
   }
 }
 
+const addStudent = (ids) => {
+  return dispatch => {
+    const configOptions = {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        course: {
+          id: ids.courseId,
+          student_id: ids.studentId
+        }
+      })
+    }
+
+    fetch(`${baseAPI}/courses/${ids.courseId}/students/${ids.studentId}`, configOptions)
+      .then( resp => resp.json())
+      .then(data => {
+        // const coursePayload = ids.studentId
+        // const studentPayoad = ids.courseId
+        dispatch({type: "COURSE_ADD_STUDENT", payload: ids})
+        dispatch({type: "STUDENT_ADD_COURSE", payload: ids})
+      })
+  }
+}
+
 export const courseActions = {
   fetchCourses,
   addCourse,
-  deleteCourse
+  deleteCourse,
+  addStudent
 }

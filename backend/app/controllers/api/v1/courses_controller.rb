@@ -29,10 +29,21 @@ class Api::V1::CoursesController < ApplicationController
     end
   end
 
+  def add_student
+    course = Course.find_by(id: course_params['id'])
+    student = Student.find_by(id: course_params['student_id'])
+    if course && student
+      course.students << student
+      render json: {message: "successfully added student to course"}
+    else
+      render json: {error: "unable to add student to course"} 
+    end
+  end
+
   private
 
   def course_params
-    params.require(:course).permit(:title, :description, :id)
+    params.require(:course).permit(:title, :description, :id, :student_id)
   end
 
 end

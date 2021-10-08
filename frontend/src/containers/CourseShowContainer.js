@@ -16,6 +16,10 @@ class CourseShowContainer extends Component {
         description: "",
         course_id: ""
       },
+      courseAndStudentIds: {
+        studentId: "",
+        courseId: ""
+      },
       newAssignmentErrors: []
     }
   }
@@ -31,22 +35,60 @@ class CourseShowContainer extends Component {
     return allAssignments.filter( assignment => assignment.course_id === thisCourse.id)
   }
 
-  handleDelete = (courseInfo) => {
-    console.log('pressed delete button')
-    this.props.deleteCourse(courseInfo)
-  }
-
   isUserAssignedToCourse = () => {
     const thisCourseId = this.findThisCourse().id
     const userCoursesIds = this.props.user.courseIds
     return userCoursesIds.includes(thisCourseId)
   }
 
+  /***************** Delete course *************************/
+  handleDelete = (courseInfo) => {
+    console.log('pressed delete button')
+    this.props.deleteCourse(courseInfo)
+  }
+
+  /***************** Adding new student to course *************************/
+
   enrolledStudents = () => {
     const thisCourseId = this.findThisCourse().id
     const allStudents = this.props.students
     const enrolled = allStudents.filter(student => student.course_ids.includes(thisCourseId))
     return enrolled
+  }
+
+  unEnrolledStudents = () => {
+    const thisCourseId = this.findThisCourse().id
+    const allStudents = this.props.students
+    const unEnrolled = allStudents.filter(student => !student.course_ids.includes(thisCourseId))
+    return unEnrolled
+  }
+
+  handleAddingStudent = () => {
+    console.log("clicked button")
+    const studentId = parseInt(document.getElementById('addStudentSelect').value)
+    const courseId = this.findThisCourse().id
+    this.setState({
+      courseAndStudentIds: {
+        studentId,
+        courseId 
+      }
+    })
+
+    if(this.validateAddingStudent()) {
+      console.log(this.state.courseAndStudentIds)
+      this.props.addStudent(this.state.courseAndStudentIds)
+    }
+    // this.validateAddingStudent() ? this.props.addStudent(this.state.courseAndStudentIds) : null
+  }
+
+  validateAddingStudent = () => {
+    let valid = true
+
+    if(this.state.courseAndStudentIds.studentId === "") {
+      valid = false
+    }
+
+    return valid
   }
 
   /***************** DOM manipulation for new assignment fields *************************/
@@ -188,6 +230,8 @@ class CourseShowContainer extends Component {
             handleShowAssignmentFields={this.handleShowAssignmentFields}
             isUserAssignedToCourse={this.isUserAssignedToCourse()}
             newAssignmentErrors = {this.state.newAssignmentErrors}
+            unEnrolledStudents = {this.unEnrolledStudents()}
+            handleAddingStudent = {this.handleAddingStudent}
             />
             : <Redirect to='/courses' />}
       </div>
@@ -218,7 +262,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     deleteCourse: (courseId) => dispatch(courseActions.deleteCourse(courseId)),
-    addAssignment: (assignment) => dispatch(assignmentActions.postNewAssignment(assignment))
+    addAssignment: (assignment) => dispatch(assignmentActions.postNewAssignment(assignment)),
+    addStudent: (courseAndStudentIds) => dispatch(courseActions.addStudent(courseAndStudentIds))
   }
 }
 

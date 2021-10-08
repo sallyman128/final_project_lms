@@ -32,12 +32,24 @@ const coursesReducer = (state=initState, action) => {
 
     case "DELETE_COURSE":
       console.log("deleting course")
+
       return {
         ...state,
         courses: [...state.courses.filter( (course) => course.id !== action.payload.course.id )],
         loading: false
       }
-    
+
+    case "COURSE_ADD_STUDENT":
+      console.log('adding student to course')
+      const newCoursesState = [...state.courses]
+      const courseIndex = newCoursesState.findIndex(course => course.id === action.payload.courseId)
+      newCoursesState[courseIndex].student_ids.push(action.payload.studentId)
+
+      return {
+        ...state,
+        courses: newCoursesState
+      }
+
     default:
       return state
   }
