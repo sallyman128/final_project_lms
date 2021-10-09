@@ -122,6 +122,10 @@ class CourseShowContainer extends Component {
     cancelEditCourseButton.remove()
     submitEditCourseButton.remove()
 
+    this.setState({
+      editCourseErrors: []
+    })
+
     titleHeader.innerHTML = `<h1>Title: ${this.state.course.title}</h1>`
     descriptionHeader.innerHTML = `<h2>Title: ${this.state.course.description}</h2>`
 
