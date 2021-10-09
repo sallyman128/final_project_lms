@@ -70,6 +70,8 @@ const logout = () => {
   return dispatch => {
     localStorage.removeItem('jwt')
     dispatch({type: "REMOVE_USER"})
+    dispatch({type: "REMOVE_STUDENTS"})
+    dispatch({type: "REMOVE_ASSIGNMENTS"})
   }
 }
 

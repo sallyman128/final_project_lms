@@ -28,6 +28,12 @@ const assignmentsReducer = (state=initState, action) => {
         loading: false
       }
 
+    case "REMOVE_ASSIGNMENTS":
+      return {
+        ...state,
+        ...initState
+      }
+
     default:
       return state
   }

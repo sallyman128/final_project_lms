@@ -31,6 +31,12 @@ const studentsReducer = (state=initState, action) => {
         loading: false
       }
 
+    case "REMOVE_STUDENTS":
+      return {
+        ...state,
+        ...initState
+      }
+
     default:
       return state
   }
