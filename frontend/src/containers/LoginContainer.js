@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {userActions} from '../actions/userActions'
 import validator from 'validator';
 import ErrorsList from '../components/ErrorsList';
+import LoginForm from '../components/LoginForm';
 
 
 class LoginContainer extends Component {
@@ -59,18 +60,7 @@ class LoginContainer extends Component {
     return (
       <div>
         <h1>Login</h1>
-        <form onSubmit={this.handleOnSubmit}>
-          <ErrorsList errors={this.state.errors}/>
-          <p>
-            Email: 
-            <input type="string" id="email" onChange={this.handleOnChange} />
-          </p>
-          <p>
-            Password:
-            <input type="password" id="password" onChange={this.handleOnChange} />
-          </p>
-          <button type="submit" value="Login">Submit</button>
-        </form> 
+        <LoginForm handleSubmit={this.handleOnSubmit} errors={this.state.errors} handleChange={this.handleOnChange}/>
       </div>   
     )
   }
