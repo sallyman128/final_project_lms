@@ -89,10 +89,33 @@ const addStudent = (ids) => {
     fetch(`${baseAPI}/courses/${ids.courseId}/students/${ids.studentId}`, configOptions)
       .then( resp => resp.json())
       .then( () => {
-        // const coursePayload = ids.studentId
-        // const studentPayoad = ids.courseId
         dispatch({type: "COURSE_ADD_STUDENT", payload: ids})
         dispatch({type: "STUDENT_ADD_COURSE", payload: ids})
+      })
+  }
+}
+
+const updateCourse = ({id, title, description}) => {
+  return dispatch => {
+    dispatch({type: "LOADING_COURSES_REQUEST"})
+    const configOptions = {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        course: {
+          id, title, description
+        }
+      })
+    }
+
+    fetch(`${baseAPI}/courses/${id}`, configOptions)
+      .then( resp => resp.json() )
+      .then( (data) => {
+        debugger
       })
   }
 }
@@ -101,5 +124,6 @@ export const courseActions = {
   fetchCourses,
   addCourse,
   deleteCourse,
-  addStudent
+  addStudent,
+  updateCourse
 }

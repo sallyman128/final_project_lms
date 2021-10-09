@@ -165,7 +165,7 @@ class CourseShowContainer extends Component {
     if (e.target.id === "submitCourseEdit") {
       if(this.validateUpdatedCourseDetails()) {
         console.log('valid new course details. updating db.')
-        
+        this.props.updateCourse(this.state.course)
       }
     }
   }
@@ -429,6 +429,7 @@ const mapDispatchToProps = dispatch => {
     deleteCourse: (courseId) => dispatch(courseActions.deleteCourse(courseId)),
     addAssignment: (assignment) => dispatch(assignmentActions.postNewAssignment(assignment)),
     addStudent: (courseAndStudentIds) => dispatch(courseActions.addStudent(courseAndStudentIds)),
+    updateCourse: (course) => dispatch(courseActions.updateCourse(course))
   }
 }
 
