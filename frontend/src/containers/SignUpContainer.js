@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {userActions} from '../actions/userActions'
 import validator from 'validator' 
+import SignupForm from '../components/SignupForm';
 
 
 class SignUpContainer extends Component {
@@ -67,8 +68,8 @@ class SignUpContainer extends Component {
     return (
       <div>
         <h1>Sign Up</h1>
-
-        <div className="error-messages">
+        <SignupForm handleSubmit={this.handleOnSubmit} handleChange={this.handleOnChange} errors={this.state.errors}/>
+        {/* <div className="error-messages">
           <ul>
             {this.state.errors.map( error => <li key={error}>{error}</li>)}
           </ul>
@@ -88,7 +89,7 @@ class SignUpContainer extends Component {
             <input type="password" id="password" onChange={this.handleOnChange} />
           </p>
           <button type="submit" value="Login">Submit</button>
-        </form>    
+        </form>     */}
       </div>
     )
   }
