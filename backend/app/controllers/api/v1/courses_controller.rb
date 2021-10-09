@@ -19,11 +19,20 @@ class Api::V1::CoursesController < ApplicationController
     end
   end
 
+  def update
+    course = Course.find_by(id: course_params['id'])
+    if course && course.update(course_params)
+      render json: {course: CourseSerializer.new(course)}, status: :accepted
+    else
+      render json: {error: 'failed to update course', params: params}, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     course = Course.find_by(id: course_params['id'])
     if current_user.courses.include?(course)
       course.destroy
-      render json: {message: "successfully deleted course"}
+      render json: {message: "successfully deleted course"}, status: :accepted
     else
       render json: {error: "failed to delete course", params: params}
     end

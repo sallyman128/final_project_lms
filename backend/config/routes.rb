@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
       post '/login', to: 'auth#create'
 
-      resources :courses, only: [:index, :create, :destroy]
+      resources :courses, only: [:index, :create, :destroy, :update]
 
       patch '/courses/:course_id/students/:id', to: 'courses#add_student'
       resources :assignments, only: [:create]
