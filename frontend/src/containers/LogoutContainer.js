@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from 'react-redux'
 import { userActions } from "../actions/userActions";
 
-class Logout extends Component {
+class LogoutContainer extends Component {
 
   componentDidMount() {
     this.props.logout()
@@ -23,4 +23,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Logout);
+export default connect(null, mapDispatchToProps)(LogoutContainer);
