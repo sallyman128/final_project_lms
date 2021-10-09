@@ -102,12 +102,12 @@ class CourseShowContainer extends Component {
 
   cancelEditCourse = (e) => {
     if (e.target.id === 'cancelCourseEdit') {
-      const titleHeader = document.getElementById("courseTitle")
-      const descriptionHeader = document.getElementById("courseDescription")
-      const cancelEditCourseButton = document.getElementById("cancelCourseEdit")
-      const submitEditCourseButton = document.getElementById("submitCourseEdit")
-      cancelEditCourseButton.remove()
-      submitEditCourseButton.remove()
+      // const titleHeader = document.getElementById("courseTitle")
+      // const descriptionHeader = document.getElementById("courseDescription")
+      // const cancelEditCourseButton = document.getElementById("cancelCourseEdit")
+      // const submitEditCourseButton = document.getElementById("submitCourseEdit")
+      // cancelEditCourseButton.remove()
+      // submitEditCourseButton.remove()
 
       const thisCourse = this.findThisCourse()
       this.setState({
@@ -118,19 +118,43 @@ class CourseShowContainer extends Component {
         }
       })
 
-      titleHeader.innerHTML = `<h1>Title: ${this.state.course.title}</h1>`
-      descriptionHeader.innerHTML = `<h2>Title: ${this.state.course.description}</h2>`
+      this.resetCourseEdit()
 
-      const editCourseButton = `<button id="editCourseButton">Edit Course Details</button>`
-      const courseButtonsDiv = document.getElementById("courseButtons")
-      courseButtonsDiv.innerHTML += editCourseButton
+      // titleHeader.innerHTML = `<h1>Title: ${this.state.course.title}</h1>`
+      // descriptionHeader.innerHTML = `<h2>Title: ${this.state.course.description}</h2>`
 
-      document.removeEventListener('click', this.cancelEditCourse)
-      document.removeEventListener('click', this.submitEditCourse)
-      document.removeEventListener('keyup', this.updateStateCourse)
+      // const editCourseButton = `<button id="editCourseButton">Edit Course Details</button>`
+      // const courseButtonsDiv = document.getElementById("courseButtons")
+      // courseButtonsDiv.innerHTML += editCourseButton
 
-      document.addEventListener('click', this.handleEditButton)
+      // document.removeEventListener('click', this.cancelEditCourse)
+      // document.removeEventListener('click', this.submitEditCourse)
+      // document.removeEventListener('keyup', this.updateStateCourse)
+
+      // document.addEventListener('click', this.handleEditButton)
     }
+  }
+
+  resetCourseEdit = () => {
+    const titleHeader = document.getElementById("courseTitle")
+    const descriptionHeader = document.getElementById("courseDescription")
+    const cancelEditCourseButton = document.getElementById("cancelCourseEdit")
+    const submitEditCourseButton = document.getElementById("submitCourseEdit")
+    cancelEditCourseButton.remove()
+    submitEditCourseButton.remove()
+
+    titleHeader.innerHTML = `<h1>Title: ${this.state.course.title}</h1>`
+    descriptionHeader.innerHTML = `<h2>Title: ${this.state.course.description}</h2>`
+
+    const editCourseButton = `<button id="editCourseButton">Edit Course Details</button>`
+    const courseButtonsDiv = document.getElementById("courseButtons")
+    courseButtonsDiv.innerHTML += editCourseButton
+
+    document.removeEventListener('click', this.cancelEditCourse)
+    document.removeEventListener('click', this.submitEditCourse)
+    document.removeEventListener('keyup', this.updateStateCourse)
+
+    document.addEventListener('click', this.handleEditButton)
   }
 
   updateStateCourse = (e) => {
@@ -166,6 +190,7 @@ class CourseShowContainer extends Component {
       if(this.validateUpdatedCourseDetails()) {
         console.log('valid new course details. updating db.')
         this.props.updateCourse(this.state.course)
+        this.resetCourseEdit()
       }
     }
   }
@@ -301,8 +326,8 @@ class CourseShowContainer extends Component {
         })
         break
 
-      // default: 
-      //   return null
+      default: 
+        break
     }
   }
 
