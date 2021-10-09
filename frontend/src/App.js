@@ -7,7 +7,7 @@ import "./App.css"
 import Home from './containers/HomeContainer.js'
 import NoRoute from './components/NoRoute.js'
 import NavBar from './containers/NavBarContainer.js'
-import SignUp from './components/SignUp.js'
+import SignUp from './containers/SignUpContainer.js'
 import Logout from './containers/LogoutContainer.js'
 import Dashboard from './containers/DashboardContainer.js'
 import Catalog from './containers/CatalogContainer.js'

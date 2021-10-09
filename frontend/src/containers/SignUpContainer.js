@@ -4,7 +4,7 @@ import {userActions} from '../actions/userActions'
 import validator from 'validator' 
 
 
-class SignUp extends Component {
+class SignUpContainer extends Component {
 
   constructor() {
     super();
@@ -100,4 +100,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SignUp)
+export default connect(null, mapDispatchToProps)(SignUpContainer)
