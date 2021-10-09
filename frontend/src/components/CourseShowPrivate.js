@@ -14,11 +14,15 @@ const CourseShowPrivate = ({
       <h2 id='courseDescription'>Description: {course.description}</h2>
 
       <h3>Students</h3>
-      <select id="addStudentSelect">
-        <option value="blank"> </option> {/* blank option */}
-        {unEnrolledStudents.map( student => <option value={student.id} key={student.name}>{student.name}</option>)}
-      </select>
-      <button id="addStudentButton" onClick={handleAddingStudent}>Add</button>
+      {!isUserAssignedToCourse ? null :
+        <div>
+          <select id="addStudentSelect">
+            <option value="blank"> </option> {/* blank option */}
+            {unEnrolledStudents.map( student => <option value={student.id} key={student.name}>{student.name}</option>)}
+          </select>
+          <button id="addStudentButton" onClick={handleAddingStudent}>Add</button>
+        </div>
+      }
       {enrolledStudents.length === 0 ? <p>No students assigned</p> : <StudentsTable students={enrolledStudents}/> }
 
       <h3>Assignments</h3>
