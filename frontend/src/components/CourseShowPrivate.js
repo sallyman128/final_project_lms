@@ -1,4 +1,6 @@
 import React from "react";
+import AssignmentsList from "./AssignmentsList";
+import ErrorsList from "./ErrorsList";
 import StudentsTable from "./StudentsTable";
 
 const CourseShowPrivate = ({
@@ -7,12 +9,8 @@ const CourseShowPrivate = ({
   }) => {
   return (
     <div>
-      <ul id='edit-course-errors'>
-        {editCourseErrors.map ( error => <li key={error} className="error-messages">{error}</li>)}
-      </ul>
-
+      <ErrorsList errors={editCourseErrors}/>
       <h1 id='courseTitle'>Title: {course.title}</h1>
-
       <h2 id='courseDescription'>Description: {course.description}</h2>
 
       <h3>Students</h3>
@@ -21,32 +19,14 @@ const CourseShowPrivate = ({
         {unEnrolledStudents.map( student => <option value={student.id} key={student.name}>{student.name}</option>)}
       </select>
       <button id="addStudentButton" onClick={handleAddingStudent}>Add</button>
-      
       {enrolledStudents.length === 0 ? <p>No students assigned</p> : <StudentsTable students={enrolledStudents}/> }
 
       <h3>Assignments</h3>
-
-      <ul id='new-assignment-errors'>
-        {newAssignmentErrors.map(error => <li key={error} className='error-messages'>{error}</li>)}
-      </ul>
+      <ErrorsList errors={newAssignmentErrors} />
       <div id="add-assignment">
         {isUserAssignedToCourse ? <button id= "showAssignmentFieldsButton" onClick={() => handleShowAssignmentFields()}>Add Assignment</button> : null }
       </div>
-
-      {assignments.length === 0 ? <p>No assignments assigned</p> : 
-        <div>
-          <ol>
-            {assignments.map( assignment => {
-              return (
-                <div key={assignment.id} id={assignment.id} className="assignment">
-                  <li>{assignment.title}</li>
-                  <i>{assignment.description}</i>
-                </div>
-              )
-            })}
-          </ol>
-        </div>
-      }
+      {assignments.length === 0 ? <p>No assignments assigned</p> : <AssignmentsList assignments={assignments} />}
       
       <div id="courseButtons">
         {isUserAssignedToCourse ? <button onClick={() => handleDelete(course)}>Delete Course</button> : null }
