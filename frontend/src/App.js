@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import "./App.css"
 
 import Home from './containers/HomeContainer.js'
-import NoRoute from './components/NoRoute.js'
+import NoRoute from './containers/NoRouteContainer.js'
 import NavBar from './containers/NavBarContainer.js'
 import SignUp from './containers/SignUpContainer.js'
 import Logout from './containers/LogoutContainer.js'
@@ -13,7 +13,7 @@ import Dashboard from './containers/DashboardContainer.js'
 import Catalog from './containers/CatalogContainer.js'
 import CourseShow from './containers/CourseShowContainer.js'
 import Login from './containers/LoginContainer.js'
-import NewCourseForm from './components/NewCourseForm.js'
+import NewCourseForm from './containers/NewCourseContainer.js'
 import StudentsIndex from './containers/StudentsContainer.js'
 
 import { courseActions } from './actions/courseActions.js'

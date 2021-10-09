@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { courseActions } from "../actions/courseActions";
 
-class NewCourseForm extends Component {
+class NewCourseContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -89,4 +89,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(NewCourseForm)
+export default connect(null, mapDispatchToProps)(NewCourseContainer)
