@@ -60,7 +60,11 @@ class LoginContainer extends Component {
     return (
       <div>
         <h1>Login</h1>
-        <LoginForm handleSubmit={this.handleOnSubmit} errors={this.state.errors} handleChange={this.handleOnChange}/>
+        <LoginForm 
+          handleSubmit={this.handleOnSubmit} 
+          errors={this.state.errors} 
+          handleChange={this.handleOnChange}
+        />
       </div>   
     )
   }
