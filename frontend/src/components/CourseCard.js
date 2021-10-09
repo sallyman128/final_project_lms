@@ -2,10 +2,10 @@ import React from "react";
 import {Link} from 'react-router-dom'
 import './CourseCard.css'
 
-const CourseCard = (props) => {
+const CourseCard = ({courseInfo}) => {
   return (
-    <Link to={`/courses/${props.courseInfo.id}`} className="courseCard">
-      <p>{props.courseInfo.title}</p>
+    <Link to={`/courses/${courseInfo.id}`} className="courseCard">
+      <p>{courseInfo.title}</p>
     </Link>
   )
 }
