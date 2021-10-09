@@ -3,18 +3,18 @@ import CourseCard from "../components/CourseCard";
 import { connect } from "react-redux";
 
 class DashboardContainer extends Component {
-  renderUserCourses() {
-    const currentUserCourses = this.findUserCourses()
-    return (
-      currentUserCourses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
-    )
-  }
-
   findUserCourses() {
     const currentUser = this.props.user;
     const allCourses = this.props.courses
     const currentUserCourses = allCourses.filter(course => course.user_ids.includes(currentUser.id))
     return currentUserCourses
+  }
+
+  renderUserCourses() {
+    const currentUserCourses = this.findUserCourses()
+    return (
+      currentUserCourses.map(courseInfo => <CourseCard courseInfo={courseInfo} key={courseInfo.id} />)
+    )
   }
 
   render() {
