@@ -2,11 +2,15 @@ import React from "react";
 import StudentsTable from "./StudentsTable";
 
 const CourseShowPrivate = ({
-  assignments, course, handleDelete, enrolledStudents, unEnrolledStudents, handleEditButton,
+  assignments, course, handleDelete, enrolledStudents, unEnrolledStudents, handleEditButton, editCourseErrors,
   handleShowAssignmentFields, isUserAssignedToCourse, newAssignmentErrors, handleAddingStudent
   }) => {
   return (
     <div>
+      <ul id='edit-course-errors'>
+        {editCourseErrors.map ( error => <li key={error} className="error-messages">{error}</li>)}
+      </ul>
+
       <h1 id='courseTitle'>Title: {course.title}</h1>
 
       <h2 id='courseDescription'>Description: {course.description}</h2>
@@ -43,9 +47,11 @@ const CourseShowPrivate = ({
           </ol>
         </div>
       }
-
-      {isUserAssignedToCourse ? <button onClick={() => handleDelete(course)}>Delete Course</button> : null }
-      {isUserAssignedToCourse ? <button onClick={() => handleEditButton(course)}>Edit Course Details</button> : null }
+      
+      <div id="courseButtons">
+        {isUserAssignedToCourse ? <button onClick={() => handleDelete(course)}>Delete Course</button> : null }
+        {isUserAssignedToCourse ? <button id="editCourseButton" onClick={(e) => handleEditButton(e)}>Edit Course Details</button> : null }
+      </div>
     </div>
   )
 }

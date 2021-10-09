@@ -25,7 +25,8 @@ class CourseShowContainer extends Component {
         title: "",
         description: ""
       },
-      newAssignmentErrors: []
+      newAssignmentErrors: [],
+      editCourseErrors: []
     }
   }
 
@@ -46,38 +47,156 @@ class CourseShowContainer extends Component {
     return userCoursesIds.includes(thisCourseId)
   }
 
+  componentDidMount = () => {
+    if (this.props.loggedIn) {
+      const thisCourse = this.findThisCourse()
+      this.setState({
+        course: {
+          title: thisCourse.title,
+          description: thisCourse.description,
+          id: thisCourse.id
+        }
+      })
+    }
+  }
+
   /***************************************** Edit course *************************************************/
-  handleEditButton = (course) => {
-    console.log('clicked edit button')
-    console.log(course)
-    this.setState({
-      course: {
-        title: course.title,
-        description: course.description,
-        id: course.id
-      }
-    })
-    
-    this.addEditFields()
+  handleEditButton = (e) => {
+    if(e.target.id === "editCourseButton") {
+      console.log('clicked edit button')
+      this.addEditFields()
+    }
   }
 
   // dynamically change DOM to show edit fields
   addEditFields = () => {
-    let titleHeader = document.getElementById("courseTitle")
-    let descriptionHeader = document.getElementById("courseDescription")
+    const titleHeader = document.getElementById("courseTitle")
+    const descriptionHeader = document.getElementById("courseDescription")
+    const editCourseButton = document.getElementById("editCourseButton")
+    editCourseButton.remove()
 
     titleHeader.innerHTML = `
-      <h1>
+      <h1 id="courseTitle">
         Title: 
-        <input id='newCourseTitle' type="string" value="${this.state.course.title}" />
+        <input id='updatedCourseTitle' type="string" value="${this.state.course.title}" />
       </h1>
     `
     descriptionHeader.innerHTML = `
-      <h2>
+      <h2 id="courseDescription">
         Description: 
-        <input id='newCourseDescription' type="string" value="${this.state.course.description}" />
+        <input id='updatedCourseDescription' type="string" value="${this.state.course.description}" />
       </h2>
     `
+
+    const courseButtonsDiv = document.getElementById("courseButtons")
+    const submitCourseEditButton = `<button id="submitCourseEdit">Submit Course Edits</button>`
+    const cancelCourseEditButton = `<button id="cancelCourseEdit">Cancel Course Edits</button>`
+
+    courseButtonsDiv.innerHTML += submitCourseEditButton
+    courseButtonsDiv.innerHTML += cancelCourseEditButton
+
+    document.addEventListener('click', this.cancelEditCourse)
+    document.addEventListener('click', this.submitEditCourse)
+    document.addEventListener('keyup', this.updateStateCourse)
+  }
+
+  cancelEditCourse = (e) => {
+    if (e.target.id === 'cancelCourseEdit') {
+      const titleHeader = document.getElementById("courseTitle")
+      const descriptionHeader = document.getElementById("courseDescription")
+      const cancelEditCourseButton = document.getElementById("cancelCourseEdit")
+      const submitEditCourseButton = document.getElementById("submitCourseEdit")
+      cancelEditCourseButton.remove()
+      submitEditCourseButton.remove()
+
+      const thisCourse = this.findThisCourse()
+      this.setState({
+        course: {
+          title: thisCourse.title,
+          description: thisCourse.description,
+          id: thisCourse.id
+        }
+      })
+
+      titleHeader.innerHTML = `<h1>Title: ${this.state.course.title}</h1>`
+      descriptionHeader.innerHTML = `<h2>Title: ${this.state.course.description}</h2>`
+
+      const editCourseButton = `<button id="editCourseButton">Edit Course Details</button>`
+      const courseButtonsDiv = document.getElementById("courseButtons")
+      courseButtonsDiv.innerHTML += editCourseButton
+
+      document.removeEventListener('click', this.cancelEditCourse)
+      document.removeEventListener('click', this.submitEditCourse)
+      document.removeEventListener('keyup', this.updateStateCourse)
+
+      document.addEventListener('click', this.handleEditButton)
+    }
+  }
+
+  updateStateCourse = (e) => {
+    switch(e.target.id) {
+      case "updatedCourseTitle":
+        console.log('update course title field')
+        this.setState( prevState => {
+          return {
+            course: {
+              ...prevState.course,
+              title: e.target.value
+            }
+          }
+        })
+        break
+      case "updatedCourseDescription":
+        console.log('update course desc field')
+        this.setState( prevState => {
+          return {
+            course: {
+              ...prevState.course,
+              description: e.target.value
+            }
+          }
+        })
+      default:
+        break
+    }
+  }
+
+  submitEditCourse = (e) => {
+    if (e.target.id === "submitCourseEdit") {
+      if(this.validateUpdatedCourseDetails()) {
+        console.log('valid new course details. updating db.')
+        
+      }
+    }
+  }
+
+  validateUpdatedCourseDetails = () => {
+    let valid = true
+    let errors = []
+    const originalCourse = this.findThisCourse()
+    const originalCourseTitle = originalCourse.title
+    const originalCourseDescription = originalCourse.description
+
+    if(this.state.course.title === originalCourseTitle && this.state.course.description === originalCourseDescription) {
+      valid = false
+      errors.push("There are no changes. Please cancel updating.")
+    }
+
+    if(this.state.course.title === ""){
+      valid = false
+      errors.push("Please enter a course title.")
+    }
+
+    if(this.state.course.description === ""){
+      valid = false
+      errors.push("Please enter a course description.")
+    }
+
+    this.setState({
+      editCourseErrors: errors
+    })
+
+    return valid
   }
 
   /***************************************** Delete course *************************************************/
@@ -277,6 +396,7 @@ class CourseShowContainer extends Component {
             unEnrolledStudents = {this.unEnrolledStudents()}
             handleAddingStudent = {this.handleAddingStudent}
             handleEditButton = {this.handleEditButton}
+            editCourseErrors = {this.state.editCourseErrors}
             />
             : <Redirect to='/courses' />}
       </div>
