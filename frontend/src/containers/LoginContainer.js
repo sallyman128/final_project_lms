@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {userActions} from '../actions/userActions'
 import validator from 'validator';
-import ErrorsList from '../components/ErrorsList';
 import LoginForm from '../components/LoginForm';
 
 

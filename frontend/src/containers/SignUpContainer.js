@@ -35,9 +35,6 @@ class SignUpContainer extends Component {
     if (this.validate()) {
       console.log('submitting signup form')
       this.props.signup(this.state.user)
-
-      // display error message if unable to signup
-      this.setState({errors: ["User email already exists"]})
     }
   }
 
