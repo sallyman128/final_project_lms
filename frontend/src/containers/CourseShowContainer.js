@@ -168,6 +168,8 @@ class CourseShowContainer extends Component {
             }
           }
         })
+        break
+
       case 'newAssignmentDescription':
         this.setState(prevState => {
           return {
@@ -178,9 +180,10 @@ class CourseShowContainer extends Component {
             }
           }
         })
+        break
 
-      default: 
-        return null
+      // default: 
+      //   return null
     }
   }
 

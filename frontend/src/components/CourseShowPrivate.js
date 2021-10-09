@@ -34,7 +34,7 @@ const CourseShowPrivate = ({
           <ol>
             {assignments.map( assignment => {
               return (
-                <div key={assignment.id} id={assignment.id} class="assignment">
+                <div key={assignment.id} id={assignment.id} className="assignment">
                   <li>{assignment.title}</li>
                   <i>{assignment.description}</i>
                 </div>
