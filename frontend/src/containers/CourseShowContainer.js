@@ -102,13 +102,6 @@ class CourseShowContainer extends Component {
 
   cancelEditCourse = (e) => {
     if (e.target.id === 'cancelCourseEdit') {
-      // const titleHeader = document.getElementById("courseTitle")
-      // const descriptionHeader = document.getElementById("courseDescription")
-      // const cancelEditCourseButton = document.getElementById("cancelCourseEdit")
-      // const submitEditCourseButton = document.getElementById("submitCourseEdit")
-      // cancelEditCourseButton.remove()
-      // submitEditCourseButton.remove()
-
       const thisCourse = this.findThisCourse()
       this.setState({
         course: {
@@ -117,21 +110,7 @@ class CourseShowContainer extends Component {
           id: thisCourse.id
         }
       })
-
       this.resetCourseEdit()
-
-      // titleHeader.innerHTML = `<h1>Title: ${this.state.course.title}</h1>`
-      // descriptionHeader.innerHTML = `<h2>Title: ${this.state.course.description}</h2>`
-
-      // const editCourseButton = `<button id="editCourseButton">Edit Course Details</button>`
-      // const courseButtonsDiv = document.getElementById("courseButtons")
-      // courseButtonsDiv.innerHTML += editCourseButton
-
-      // document.removeEventListener('click', this.cancelEditCourse)
-      // document.removeEventListener('click', this.submitEditCourse)
-      // document.removeEventListener('keyup', this.updateStateCourse)
-
-      // document.addEventListener('click', this.handleEditButton)
     }
   }
 
