@@ -2,7 +2,7 @@ const baseAPI = "http://localhost:9999/api/v1"
 
 const fetchCourses = () => {
   return (dispatch) => {
-    dispatch({type: "LOADING_COURSES"})
+    dispatch({type: "LOADING_COURSES_REQUEST"})
     fetch(`${baseAPI}/courses`)
       .then( resp => resp.json() )
       .then( data => dispatch({type: "ADD_COURSES", courses: data.courses}))
@@ -11,7 +11,7 @@ const fetchCourses = () => {
 
 const addCourse = (courseInfo) => {
   return (dispatch) => {
-    dispatch({type: "LOADING_COURSES"})
+    dispatch({type: "LOADING_COURSES_REQUEST"})
     const configOptions = {
       method: "POST",
       headers: {
@@ -40,7 +40,7 @@ const addCourse = (courseInfo) => {
 
 const deleteCourse = (courseInfo) => {
   return (dispatch) => {
-    dispatch({type: "LOADING_COURSES"})
+    dispatch({type: "LOADING_COURSES_REQUEST"})
     const configOptions = {
       method: "DELETE",
       headers: {
@@ -70,6 +70,7 @@ const deleteCourse = (courseInfo) => {
 
 const addStudent = (ids) => {
   return dispatch => {
+    dispatch({type: "LOADING_COURSES_REQUEST"})
     const configOptions = {
       method: "PATCH",
       headers: {
@@ -87,7 +88,7 @@ const addStudent = (ids) => {
 
     fetch(`${baseAPI}/courses/${ids.courseId}/students/${ids.studentId}`, configOptions)
       .then( resp => resp.json())
-      .then(data => {
+      .then( () => {
         // const coursePayload = ids.studentId
         // const studentPayoad = ids.courseId
         dispatch({type: "COURSE_ADD_STUDENT", payload: ids})

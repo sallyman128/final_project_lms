@@ -2,14 +2,14 @@ import React from "react";
 import StudentsTable from "./StudentsTable";
 
 const CourseShowPrivate = ({
-  assignments, course, handleDelete, enrolledStudents, unEnrolledStudents, 
+  assignments, course, handleDelete, enrolledStudents, unEnrolledStudents, handleEditButton,
   handleShowAssignmentFields, isUserAssignedToCourse, newAssignmentErrors, handleAddingStudent
   }) => {
   return (
     <div>
-      <h1>Title: {course.title}</h1>
+      <h1 id='courseTitle'>Title: {course.title}</h1>
 
-      <h2>Description: {course.description}</h2>
+      <h2 id='courseDescription'>Description: {course.description}</h2>
 
       <h3>Students</h3>
       <select id="addStudentSelect">
@@ -23,7 +23,7 @@ const CourseShowPrivate = ({
       <h3>Assignments</h3>
 
       <ul id='new-assignment-errors'>
-        {newAssignmentErrors.map(error => <li key={error}>{error}</li>)}
+        {newAssignmentErrors.map(error => <li key={error} className='error-messages'>{error}</li>)}
       </ul>
       <div id="add-assignment">
         {isUserAssignedToCourse ? <button id= "showAssignmentFieldsButton" onClick={() => handleShowAssignmentFields()}>Add Assignment</button> : null }
@@ -45,7 +45,7 @@ const CourseShowPrivate = ({
       }
 
       {isUserAssignedToCourse ? <button onClick={() => handleDelete(course)}>Delete Course</button> : null }
-      {/* <button>Edit Course Details</button> */}
+      {isUserAssignedToCourse ? <button onClick={() => handleEditButton(course)}>Edit Course Details</button> : null }
     </div>
   )
 }

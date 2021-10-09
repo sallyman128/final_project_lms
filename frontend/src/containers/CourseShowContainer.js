@@ -20,6 +20,11 @@ class CourseShowContainer extends Component {
         studentId: "",
         courseId: ""
       },
+      course: {
+        id: "",
+        title: "",
+        description: ""
+      },
       newAssignmentErrors: []
     }
   }
@@ -41,13 +46,47 @@ class CourseShowContainer extends Component {
     return userCoursesIds.includes(thisCourseId)
   }
 
-  /***************** Delete course *************************/
+  /***************************************** Edit course *************************************************/
+  handleEditButton = (course) => {
+    console.log('clicked edit button')
+    console.log(course)
+    this.setState({
+      course: {
+        title: course.title,
+        description: course.description,
+        id: course.id
+      }
+    })
+    
+    this.addEditFields()
+  }
+
+  // dynamically change DOM to show edit fields
+  addEditFields = () => {
+    let titleHeader = document.getElementById("courseTitle")
+    let descriptionHeader = document.getElementById("courseDescription")
+
+    titleHeader.innerHTML = `
+      <h1>
+        Title: 
+        <input id='newCourseTitle' type="string" value="${this.state.course.title}" />
+      </h1>
+    `
+    descriptionHeader.innerHTML = `
+      <h2>
+        Description: 
+        <input id='newCourseDescription' type="string" value="${this.state.course.description}" />
+      </h2>
+    `
+  }
+
+  /***************************************** Delete course *************************************************/
   handleDelete = (courseInfo) => {
     console.log('pressed delete button')
     this.props.deleteCourse(courseInfo)
   }
 
-  /***************** Adding new student to course *************************/
+  /***************************************** Adding new student to course *************************************/
 
   enrolledStudents = () => {
     const thisCourseId = this.findThisCourse().id
@@ -78,7 +117,6 @@ class CourseShowContainer extends Component {
       console.log(this.state.courseAndStudentIds)
       this.props.addStudent(this.state.courseAndStudentIds)
     }
-    // this.validateAddingStudent() ? this.props.addStudent(this.state.courseAndStudentIds) : null
   }
 
   validateAddingStudent = () => {
@@ -91,7 +129,7 @@ class CourseShowContainer extends Component {
     return valid
   }
 
-  /***************** DOM manipulation for new assignment fields *************************/
+  /***************************** DOM manipulation for new assignment fields *************************************/
 
   // first time user clicks to add assignment, fields will appear
   handleShowAssignmentFields = () => {
@@ -140,6 +178,9 @@ class CourseShowContainer extends Component {
             }
           }
         })
+
+      default: 
+        return null
     }
   }
 
@@ -214,7 +255,7 @@ class CourseShowContainer extends Component {
     }
   }
 
-  /********************************************************************************************/
+  /**************************************************************************************************************/
 
   render() {
     const thisCourse = this.findThisCourse()
@@ -232,6 +273,7 @@ class CourseShowContainer extends Component {
             newAssignmentErrors = {this.state.newAssignmentErrors}
             unEnrolledStudents = {this.unEnrolledStudents()}
             handleAddingStudent = {this.handleAddingStudent}
+            handleEditButton = {this.handleEditButton}
             />
             : <Redirect to='/courses' />}
       </div>
@@ -263,7 +305,7 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteCourse: (courseId) => dispatch(courseActions.deleteCourse(courseId)),
     addAssignment: (assignment) => dispatch(assignmentActions.postNewAssignment(assignment)),
-    addStudent: (courseAndStudentIds) => dispatch(courseActions.addStudent(courseAndStudentIds))
+    addStudent: (courseAndStudentIds) => dispatch(courseActions.addStudent(courseAndStudentIds)),
   }
 }
 

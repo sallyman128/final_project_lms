@@ -6,8 +6,8 @@ const initState = {
 const coursesReducer = (state=initState, action) => {
 
   switch(action.type) {
-    case "LOADING_COURSES":
-      console.log("loading courses")
+    case "LOADING_COURSES_REQUEST":
+      console.log("loading courses request")
       return {
         ...state,
         courses: [...state.courses],
@@ -47,7 +47,8 @@ const coursesReducer = (state=initState, action) => {
 
       return {
         ...state,
-        courses: newCoursesState
+        courses: newCoursesState,
+        loading: false
       }
 
     default:

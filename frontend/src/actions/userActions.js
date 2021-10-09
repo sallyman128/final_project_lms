@@ -2,7 +2,7 @@ const baseAPI = 'http://localhost:9999/api/v1'
 
 const signup = (userInfo) => {
   return (dispatch) => {
-    dispatch({type: "LOADING_REQUEST"})
+    dispatch({type: "LOADING_USER_REQUEST"})
     const configOptions = {
       method: "POST",
       headers: {
@@ -35,7 +35,7 @@ const signup = (userInfo) => {
 
 const login = (userInfo) => {
   return dispatch => {
-    dispatch({type: "LOADING_REQUEST"})
+    dispatch({type: "LOADING__USER_REQUEST"})
 
     const configOptions = {
       method: "POST",

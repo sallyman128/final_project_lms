@@ -11,7 +11,7 @@ const initState = {
 
 const usersReducer = (state=initState, action) => {
   switch (action.type) {
-    case "LOADING_REQUEST":
+    case "LOADING_USER_REQUEST":
       console.log("loading user request")
       return {
         ...state,

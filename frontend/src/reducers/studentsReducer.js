@@ -5,6 +5,12 @@ const initState = {
 
 const studentsReducer = (state=initState, action) => {
   switch(action.type) {
+    case "LOADING_STUDENTS_REQUEST":
+      console.log("loading students request")
+      return {
+        ...state,
+        loading: true
+      }
 
     case "ADD_STUDENTS":
       console.log("adding students")
@@ -21,7 +27,8 @@ const studentsReducer = (state=initState, action) => {
       newStudentsState[studentIndex].course_ids.push(action.payload.courseId)
       return {
         ...state,
-        students: newStudentsState
+        students: newStudentsState,
+        loading: false
       }
 
     default:
