@@ -115,7 +115,11 @@ const updateCourse = ({id, title, description}) => {
     fetch(`${baseAPI}/courses/${id}`, configOptions)
       .then( resp => resp.json() )
       .then( (data) => {
-        debugger
+        if(data.error) {
+          console.log(data.error)
+        } else {
+          dispatch({type:"UPDATE_COURSE", payload: data})
+        }
       })
   }
 }

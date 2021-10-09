@@ -39,6 +39,18 @@ const coursesReducer = (state=initState, action) => {
         loading: false
       }
 
+    case "UPDATE_COURSE":
+      console.log("updating course")
+      const updatedCoursesState = [...state.courses]
+      const updatedCourseIndex = updatedCoursesState.findIndex( course => course.id === action.payload.course.id)
+      updatedCoursesState[updatedCourseIndex] = action.payload.course
+
+      return {
+        ...state,
+        courses: updatedCoursesState,
+        loading: false
+      }
+
     case "COURSE_ADD_STUDENT":
       console.log('adding student to course')
       const newCoursesState = [...state.courses]
