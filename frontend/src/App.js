@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import "./App.css"
 
-import Home from './components/Home.js'
+import Home from './containers/HomeContainer.js'
 import NoRoute from './components/NoRoute.js'
 import NavBar from './containers/NavBarContainer.js'
 import SignUp from './components/SignUp.js'
