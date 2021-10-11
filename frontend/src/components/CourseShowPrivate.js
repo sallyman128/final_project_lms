@@ -23,7 +23,7 @@ const CourseShowPrivate = ({
           <button id="addStudentButton" onClick={handleAddingStudent}>Add</button>
         </div>
       }
-      {enrolledStudents.length === 0 ? <p>No students assigned</p> : <StudentsTable students={enrolledStudents}/> }
+      {enrolledStudents.length === 0 ? <p>No students assigned</p> : <StudentsTable students={enrolledStudents} userCanEdit={isUserAssignedToCourse}/> }
 
       <h3>Assignments</h3>
       <ErrorsList errors={newAssignmentErrors} />

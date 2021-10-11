@@ -1,6 +1,6 @@
 import React from "react";
 
-const StudentsTable = ({students}) => {
+const StudentsTable = ({students, userCanEdit}) => {
   return (
     <table id="students-table">
       <thead>
@@ -14,6 +14,7 @@ const StudentsTable = ({students}) => {
           <tr key={student.id}>
             <td>{student.name}</td>
             <td>{student.email}</td>
+            {userCanEdit ? <button className='studentRemoveButton' id={student.id}>X</button> : null}
           </tr>
         ))}
       </tbody>

@@ -256,6 +256,9 @@ class CourseShowContainer extends Component {
     return valid
   }
 
+  /***************************** Remove student from course *************************************/
+
+
   /***************************** DOM manipulation for new assignment fields *************************************/
 
   // first time user clicks to add assignment, fields will appear
