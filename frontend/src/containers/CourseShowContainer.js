@@ -230,7 +230,6 @@ class CourseShowContainer extends Component {
   }
 
   handleAddingStudent = () => {
-    console.log("clicked button")
     const studentId = parseInt(document.getElementById('addStudentSelect').value)
     const courseId = this.findThisCourse().id
     this.setState({
@@ -241,7 +240,6 @@ class CourseShowContainer extends Component {
     })
 
     if(this.validateAddingStudent()) {
-      console.log(this.state.courseAndStudentIds)
       this.props.addStudent(this.state.courseAndStudentIds)
     }
   }
@@ -257,7 +255,9 @@ class CourseShowContainer extends Component {
   }
 
   /***************************** Remove student from course *************************************/
-
+  handleUnenrollStudentButton = (e) => {
+    this.props.removeStudent({courseId: this.state.course.id, studentId: e.target.id})
+  }
 
   /***************************** DOM manipulation for new assignment fields *************************************/
 
@@ -408,6 +408,7 @@ class CourseShowContainer extends Component {
             handleAddingStudent = {this.handleAddingStudent}
             handleEditButton = {this.handleEditButton}
             editCourseErrors = {this.state.editCourseErrors}
+            handleUnenrollStudentButton = {this.handleUnenrollStudentButton}
             />
             : <Redirect to='/courses' />}
       </div>
@@ -440,7 +441,8 @@ const mapDispatchToProps = dispatch => {
     deleteCourse: (courseId) => dispatch(courseActions.deleteCourse(courseId)),
     addAssignment: (assignment) => dispatch(assignmentActions.postNewAssignment(assignment)),
     addStudent: (courseAndStudentIds) => dispatch(courseActions.addStudent(courseAndStudentIds)),
-    updateCourse: (course) => dispatch(courseActions.updateCourse(course))
+    updateCourse: (course) => dispatch(courseActions.updateCourse(course)),
+    removeStudent: (courseAndStudentIds) => dispatch(courseActions.removeStudent(courseAndStudentIds))
   }
 }
 

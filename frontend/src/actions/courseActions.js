@@ -72,7 +72,7 @@ const addStudent = (ids) => {
   return dispatch => {
     dispatch({type: "LOADING_COURSES_REQUEST"})
     const configOptions = {
-      method: "PATCH",
+      method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         "Content-Type": "application/json",
@@ -124,10 +124,42 @@ const updateCourse = ({id, title, description}) => {
   }
 }
 
+const removeStudent = ({courseId, studentId}) => {
+  return dispatch => {
+    dispatch({type: "LOADING_COURSES_REQUEST"})
+    const configOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        course: {
+          id: courseId, student_id: studentId
+        }
+      })
+    }
+
+    fetch(`${baseAPI}/courses/${courseId}/students/${studentId}`, configOptions)
+      .then(resp => resp.json())
+      .then(data => {
+        if (data.error) {
+          console.log(data.error)
+        } else {
+          dispatch({type:"COURSE_REMOVE_STUDENT", payload: {courseId, studentId}})
+          dispatch({type:"STUDENT_REMOVE_COURSE", payload: {courseId, studentId}})
+        }
+      })
+
+  }
+}
+
 export const courseActions = {
   fetchCourses,
   addCourse,
   deleteCourse,
   addStudent,
-  updateCourse
+  updateCourse,
+  removeStudent
 }

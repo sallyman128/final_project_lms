@@ -5,7 +5,7 @@ import StudentsTable from "./StudentsTable";
 
 const CourseShowPrivate = ({
   assignments, course, handleDelete, enrolledStudents, unEnrolledStudents, handleEditButton, editCourseErrors,
-  handleShowAssignmentFields, isUserAssignedToCourse, newAssignmentErrors, handleAddingStudent
+  handleShowAssignmentFields, isUserAssignedToCourse, newAssignmentErrors, handleAddingStudent, handleUnenrollStudentButton
   }) => {
   return (
     <div>
@@ -17,13 +17,14 @@ const CourseShowPrivate = ({
       {!isUserAssignedToCourse ? null :
         <div>
           <select id="addStudentSelect">
-            <option value="blank"> </option> {/* blank option */}
+            <option value=""> </option> {/* blank option */}
             {unEnrolledStudents.map( student => <option value={student.id} key={student.name}>{student.name}</option>)}
           </select>
           <button id="addStudentButton" onClick={handleAddingStudent}>Add</button>
         </div>
       }
-      {enrolledStudents.length === 0 ? <p>No students assigned</p> : <StudentsTable students={enrolledStudents} userCanEdit={isUserAssignedToCourse}/> }
+      {enrolledStudents.length === 0 ? <p>No students assigned</p> : 
+        <StudentsTable students={enrolledStudents} userCanEdit={isUserAssignedToCourse} handleOnClick={handleUnenrollStudentButton}/> }
 
       <h3>Assignments</h3>
       <ErrorsList errors={newAssignmentErrors} />

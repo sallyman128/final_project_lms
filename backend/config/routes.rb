@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
       resources :courses, only: [:index, :create, :destroy, :update]
 
-      patch '/courses/:course_id/students/:id', to: 'courses#add_student'
+      post '/courses/:course_id/students/:id', to: 'courses#add_student'
+      delete '/courses/:course_id/students/:id', to: 'courses#remove_student'
       resources :assignments, only: [:create]
     end
   end

@@ -49,6 +49,17 @@ class Api::V1::CoursesController < ApplicationController
     end
   end
 
+  def remove_student
+    course = Course.find_by(id: course_params['id'])
+    student = Student.find_by(id: course_params['student_id'])
+    if course && student
+      course.students.delete(student)
+      render json: {message: "successfully removed student from course"}
+    else
+      render json: {error: "Unable to remove student from course"}
+    end
+  end
+
   private
 
   def course_params
