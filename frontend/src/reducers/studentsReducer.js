@@ -22,8 +22,8 @@ const studentsReducer = (state=initState, action) => {
 
     case "STUDENT_ADD_COURSE":
       console.log('adding courseId to student')
-      const newStudentsState = [...state.students]
-      const studentIndex = newStudentsState.findIndex(student => student.id === action.payload.studentId)
+      let newStudentsState = [...state.students]
+      let studentIndex = newStudentsState.findIndex(student => student.id === action.payload.studentId)
       newStudentsState[studentIndex].course_ids.push(action.payload.courseId)
       return {
         ...state,
@@ -35,6 +35,17 @@ const studentsReducer = (state=initState, action) => {
       return {
         ...state,
         ...initState
+      }
+    
+    case "STUDENT_REMOVE_COURSE":
+      let updatedStudentsState = [...state.students]
+      let thisStudentIndex = updatedStudentsState.findIndex(student => student.id === parseInt(action.payload.studentId))
+      let thisCourseIndex = updatedStudentsState[thisStudentIndex].course_ids.findIndex(courseId => courseId === action.payload.courseId)
+      updatedStudentsState[thisStudentIndex].course_ids.splice(thisCourseIndex,1)
+      return {
+        ...state,
+        students: updatedStudentsState,
+        loading: false
       }
 
     default:

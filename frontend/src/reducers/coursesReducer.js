@@ -41,8 +41,8 @@ const coursesReducer = (state=initState, action) => {
 
     case "UPDATE_COURSE":
       console.log("updating course")
-      const updatedCoursesState = [...state.courses]
-      const updatedCourseIndex = updatedCoursesState.findIndex( course => course.id === action.payload.course.id)
+      let updatedCoursesState = [...state.courses]
+      let updatedCourseIndex = updatedCoursesState.findIndex( course => course.id === action.payload.course.id)
       updatedCoursesState[updatedCourseIndex] = action.payload.course
 
       return {
@@ -54,7 +54,7 @@ const coursesReducer = (state=initState, action) => {
     case "COURSE_ADD_STUDENT":
       console.log('adding student to course')
       let newCoursesState = [...state.courses]
-      const courseIndex = newCoursesState.findIndex(course => course.id === action.payload.courseId)
+      let courseIndex = newCoursesState.findIndex(course => course.id === action.payload.courseId)
       newCoursesState[courseIndex].student_ids.push(action.payload.studentId)
       return {
         ...state,
@@ -64,10 +64,10 @@ const coursesReducer = (state=initState, action) => {
 
     case "COURSE_REMOVE_STUDENT":
       console.log('removing student from course')
-      const updatedCourseState= [...state.courses]
-      courseIndex = updatedCourseState.findIndex(course => course.id === action.payload.courseId)
-      const studentIndex = newCoursesState[courseIndex].student_ids(student_id => student_id === action.payload.studentId )
-      updatedCourseState[courseIndex].student_ids[studentIndex].splice(studentIndex, 1)
+      let updatedCourseState = [...state.courses]
+      let newcourseIndex = updatedCourseState.findIndex(course => course.id === action.payload.courseId)
+      let studentIndex = updatedCourseState[newcourseIndex].student_ids.findIndex(student_id => student_id === parseInt(action.payload.studentId) )
+      updatedCourseState[newcourseIndex].student_ids.splice(studentIndex, 1)
       return {
         ...state,
         courses: updatedCourseState,
