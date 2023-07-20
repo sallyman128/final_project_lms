@@ -8,9 +8,14 @@ This program is a prototype Learning Managment Software (LMS). It lets a user (a
 
 In your terminal, move to the /backend directory and run "$ bundle install" to download and install all the supporting gems. Similarly, move to the /frontend directory and run "$ npm install" to download and install all the dependencies.
 
-From the /backend directory, run your rails server on port 9999 by running "$ rails server -p 9999". All the api data is accessible using this port along with the /api/v1/ addition to the url.
+Backend:
+- Run the schema migrations: From the /backend directory, run "$ rails db:migrate" to run all the migration scripts.
+- OPTIONAL: Add some basic seed data to the database: From the /backend directory, run "$ rails db:seed".
+- Run the rails server: From the /backend directory, run your rails server on port 9999 by running "$ rails server -p 9999". All the api data is accessible using this port along with the /api/v1/ addition to the url.
 
-From the /frontend directory, start up your node server by running "$ npm start". It should automatically set you on the 3000 port.
+Frontend:
+- Make sure redux-thunk is installed. You may need to run "$ npm install --save redux-thunk".
+- From the /frontend directory, start up your node server by running "$ npm start". It should automatically set you on the 3000 port.
 
 All the client-side runs on port 3000 while the server-side runs on port 9999. 
 
