@@ -1,34 +1,23 @@
 import React, {Component} from "react"
 import {Link} from 'react-router-dom'
 import { connect } from "react-redux"
-import "./NavBarContainer.css"
+import "../styles/NavBarContainer.css"
 
 class NavBar extends Component {
 
-  linksToDisplay() {
-    if (this.props.loggedIn) {
-      return [
+  linksToDisplay = [
         {name: "Dashboard", url: "/"},
         {name: "Catalog", url: "/courses"},
         {name: "Students", url: "/students"},
         {name: "Logout", url: "/logout"}
-      ]
-    } else {
-      return [
-        {name: "Home", url: '/'},
-        {name: "Catalog", url: '/courses'},
-        {name: "Login", url: '/login'},
-        {name: "Signup", url: '/signup'}
-      ]
-    }
-  }
+  ]
 
   render() {
     return (
       <div id="NavBarDiv">
         <ul className="NavBar">
           <li id='appTitle'>MyLMS</li>
-          {this.linksToDisplay().map( ({url, name}) => {
+          {this.linksToDisplay.map( ({url, name}) => {
             return (
               <Link to={url} key={name}><li>{name}</li></Link>
             )
