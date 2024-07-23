@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/HomeContainer.css';
+import '../styles/LandingContainer.css';
 
-const HomeContainer = () => {
+const LandingContainer = () => {
   return (
     <div className="vh-100 gradient-custom d-flex justify-content-center align-items-center">
       <div className="text-center text-white">
@@ -21,4 +21,4 @@ const HomeContainer = () => {
   );
 }
 
-export default HomeContainer;
+export default LandingContainer;

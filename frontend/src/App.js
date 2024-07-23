@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import "./App.css"
 
-import Home from './containers/HomeContainer.js'
+import LandingContainer from './containers/LandingContainer.js'
 import NoRoute from './containers/NoRouteContainer.js'
 import NavBar from './containers/NavBarContainer.js'
 import SignUp from './containers/SignUpContainer.js'
@@ -33,7 +33,7 @@ class App extends Component {
         {this.props.loggedIn ? <NavBar /> : null}
 
         <Switch>
-          <Route exact path='/' render={() => this.props.loggedIn ? <Dashboard /> : <Home />} />
+          <Route exact path='/' render={() => this.props.loggedIn ? <Dashboard /> : <LandingContainer />} />
           <Route exact path="/courses" render={() => <Catalog />} />
           <Route path="/courses/new" render={() => this.props.loggedIn ? <NewCourseForm /> : <Redirect to="/courses" />} />
           <Route path="/courses/:id" render={({match}) => <CourseShow match={match} />} />
