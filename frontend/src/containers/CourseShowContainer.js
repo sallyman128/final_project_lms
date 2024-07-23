@@ -163,6 +163,7 @@ class CourseShowContainer extends Component {
             }
           }
         })
+        break
       default:
         break
     }
