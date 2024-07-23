@@ -1,11 +1,15 @@
 import React from "react";
 
-const ErrorsList = ({errors}) => {
-  return (
-    <ul>
-      {errors.map( error => <li key={error} className='error-messages'>{error}</li>)}
-    </ul>
-  )
-}
+const ErrorsList = ({ errors }) => (
+  <div>
+    {errors.length > 0 && (
+      <div className="alert alert-danger">
+        {errors.map((error, index) => (
+          <p key={index}>{error}</p>
+        ))}
+      </div>
+    )}
+  </div>
+);
 
-export default ErrorsList
+export default ErrorsList;

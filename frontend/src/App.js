@@ -30,7 +30,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <NavBar />
+        {this.props.loggedIn ? <NavBar /> : null}
 
         <Switch>
           <Route exact path='/' render={() => this.props.loggedIn ? <Dashboard /> : <Home />} />
