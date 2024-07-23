@@ -33,13 +33,6 @@ const SignupForm = ({ handleSubmit, handleChange, errors }) => {
         />
         <label className="form-label" htmlFor="password">Password</label>
       </div>
-      {errors.length > 0 && (
-        <div className="alert alert-danger">
-          {errors.map((error, index) => (
-            <p key={index}>{error}</p>
-          ))}
-        </div>
-      )}
       <button className="btn btn-outline-light btn-lg px-5" type="submit">Sign Up</button>
     </form>
   );
