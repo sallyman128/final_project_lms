@@ -1,3 +1,7 @@
 .gradient-custom {
     background: linear-gradient(45deg, #508bfc, #6a11cb);
   }
+
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+  }
